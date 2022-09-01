@@ -11,17 +11,18 @@
 </head>
 <body>
 
-	<th:block th:insert="~{fragments/asmtemplate :: header}"></th:block>
-
 	<div class="container">
-		<section layout:fragment="custom-content"></section>
+		<th:block th:insert="~{fragments/asmtemplate :: header}"></th:block>
+
+		<div class="container">
+			<section layout:fragment="custom-content"></section>
+		</div>
+
+		<th:block th:insert="~{fragments/asmtemplate :: footer}">
+		</th:block>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 	</div>
-
-	<th:block th:insert="~{fragments/asmtemplate :: footer}">
-	</th:block>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
