@@ -10,6 +10,7 @@
 		<h3>Nous avons ici les éléments propres à la page index.</h3>
 		<div th:each="port : ${ports}">
 			<p th:text="${port.name}"></p>
+			<p th:text="${port.coordinates}"></p>
 		</div>
 	</section>
 	
