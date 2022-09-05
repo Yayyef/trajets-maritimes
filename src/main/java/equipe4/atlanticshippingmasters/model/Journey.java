@@ -1,20 +1,30 @@
 package equipe4.atlanticshippingmasters.model;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import java.util.List;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "step")
+@Table(name = "journey")
 public class Journey {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idJourney;
 	private int totalDistance;
+	
+	@OneToMany( targetEntity=Step.class, mappedBy="idStep" )
+    private List<Step> st = new ArrayList<>();
+
+	
+	
 }
