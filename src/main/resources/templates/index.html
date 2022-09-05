@@ -1,18 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout}">
+	
 <head>
 <title>Welcome</title>
+<link rel="stylesheet" type="text/css" th:href="@{/layouts/style.css}"/>
 </head>
 <body>
 
 	<section layout:fragment="custom-content">
-		<h3>Nous avons ici les éléments propres à la page index.</h3>
-		<div th:each="port : ${ports}">
-			<p th:text="${port.name}"></p>
-			<p th:text="${port.coordinates}"></p>
+		
+<!-- 		<div th:each="port : ${ports}"> -->
+<!-- 			<p th:text="${port.name}"></p> -->
+<!-- 			<p th:text="${port.coordinates}"></p> -->
+<!-- 		</div> -->
+		
+		<div class="container-fluid bg-light" >
+		
+		 <div class="row">
+			    <div class="col text-center">
+			      <p>Containers are the most basic layout element in Bootstrap and are required when
+			      using our default grid system. Containers are used to contain, pad, and (sometimes) 
+			      center the content within them. While containers can be nested, most layouts do not require 
+			      a nested container. </p>
+					
+			    </div>
+			    
+			    <div class="col">
+			    
+			      	<img class="rounded float-end-img-fluid" id="indeximg" th:src="@{img/atlantiquemaritime.jpg}"/>
+			    </div>
+		  </div>
+		  
 		</div>
+		<div class="card" style="width: 18rem;">
+			  <img src="..." class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">Card title</h5>
+			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			    <a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+		</div>
+		<div class="card" style="width: 18rem;">
+			  <img src="..." class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">Card title</h5>
+			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			    <a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+		</div>
+		
 	</section>
+
 	
 </body>
 </html>
