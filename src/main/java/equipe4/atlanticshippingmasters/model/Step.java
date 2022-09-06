@@ -20,13 +20,17 @@ public class Step {
 	private int idStep;
 	private int distance;
 	private int journeyOrder;
-	private int idPortDeparture;
-	private int idPortArrival;
-	//private int idJourneyFk;
-	
 	
 	@ManyToOne
-	@JoinColumn (name = "idJourneyFk", referencedColumnName = "idJourney")
+    @JoinColumn(name="idJourneyFk", referencedColumnName = "idJourney",  nullable=false)
 	private Journey idJourneyFk;
+	
+	// Name c'est le nom de la colonne de CE modèle. ReferencedColumnname vise le modèle de l'autre table
+	@ManyToOne
+    @JoinColumn(name="idPortDeparture", referencedColumnName = "idPort",  nullable=false)
+	private Port idPortDeparture;
+	@ManyToOne
+	@JoinColumn(name="idPortArrival", referencedColumnName = "idPort",  nullable=false)
+	private Port idPortArrival;
 }
 

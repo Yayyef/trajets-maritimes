@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>Calculateur</title>
+<script type="text/javascript" th:src="@{/js/calculator.js}" async="true"></script>
+</head>
+<body>
+
+	<section layout:fragment="custom-content">
+
+		<div th:each="step : ${steps}">
+			<p th:text="${step.idStep}"></p>
+			<p th:text="${step.idPortDeparture.name}"></p>
+			<p th:text="${step.idPortDeparture.coordinates}"></p>
+			<p th:text="${step.idPortArrival.name}"></p>
+			<p th:text="${step.idPortArrival.coordinates}"></p>
+			<p th:text="${step.idJourneyFk.totalDistance}"></p>
+		</div>			
+
+	</section>
+
+</body>
+</html>

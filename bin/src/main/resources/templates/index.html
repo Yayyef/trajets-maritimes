@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+
+	<section layout:fragment="custom-content">
+		<h3>Nous avons ici les éléments propres à la page index.</h3>
+		<div th:each="port : ${ports}">
+			<p th:text="${port.name}"></p>
+			<p th:text="${port.coordinates}"></p>
+		</div>
+	</section>
+	
+</body>
+</html>

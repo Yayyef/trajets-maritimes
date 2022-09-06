@@ -22,8 +22,8 @@ public class Journey {
 	private int idJourney;
 	private int totalDistance;
 	
-	@OneToMany( targetEntity=Step.class, mappedBy="idStep" )
-    private List<Step> st = new ArrayList<>();
+//	@OneToMany( targetEntity=Step.class, mappedBy="idStep" )
+//    private List<Step> st = new ArrayList<>();
 
 	
 	

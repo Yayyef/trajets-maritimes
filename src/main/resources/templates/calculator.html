@@ -4,31 +4,41 @@
 	layout:decorate="~{layouts/layout}">
 <head>
 <title>Calculateur</title>
+<script type="text/javascript" th:src="@{/js/calculator.js}" async="true"></script>
 </head>
 <body>
 
 	<section layout:fragment="custom-content">
 
 		<h3>Bienvenue dans notre calculateur d'itinéraires</h3>
-		
-		<form>
+<!-- th:action="@{/greeting}" th:object="${greeting}" -->
+		<form action="#" th:action="@{/calculator}" th:method="post">
 			<fieldset>
-			    <label for="step1" class="form-label">Choisissez un port d'attache</label>
-			    
-				<select  id="step1" class="form-select" aria-label="Default select example">
-						<option th:each="port : ${ports}" th:value="${port.name}" th:text="${port.name}"/>
+			
+				<label for="step1" class="form-label">Choisissez un port
+					d'attache</label> 
+				<select id="step1" class="form-select" aria-label="Default select example" th:name="step1">
+					<option th:each="port : ${ports}" th:value="${port.coordinates}"
+						th:text="${port.name}" th:name="step1"/>
 				</select> 
-				
-				<label for="select" class="form-label">Disabled input</label>
-				<select class="form-select" aria-label="Default select example">
-					<option selected>Open this select menu</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
-				</select>
-				
+				<select id="step2" class="form-select" aria-label="Default select example" th:name="step2">
+					<option th:each="port : ${ports}" th:value="${port.coordinates}"
+						th:text="${port.name}" th:name="step2"/>
+				</select> 
+				<select id="step3" class="form-select" aria-label="Default select example" th:name="step3">
+					<option th:each="port : ${ports}" th:value="${port.coordinates}"
+						th:text="${port.name}" th:name="step3"/>
+				</select> 
+				<select id="step4" class="form-select" aria-label="Default select example" th:name="step4">
+					<option th:each="port : ${ports}" th:value="${port.coordinates}"
+						th:text="${port.name}" th:name="step4"/>
+				</select> 
+				<button type="button" id="addStepButton">Ajouter une étape</button>
+				<button>Calculer</button>
+
 			</fieldset>
 		</form>
+
 	</section>
 
 </body>
