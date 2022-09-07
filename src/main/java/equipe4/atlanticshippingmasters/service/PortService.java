@@ -1,6 +1,8 @@
 package equipe4.atlanticshippingmasters.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ public class PortService {
 	
 	@Autowired
 	private PortRepository pr;
+//	private Random randomGenerator;
 	
 	// Chercher et retourner un port unique avec son id
 	public Optional<Port> getPort(final Integer id) {
@@ -30,6 +33,13 @@ public class PortService {
 	public void insertPort(Port Port) {
 		pr.save(Port);
 	}
+
+//	public Port get(int randomIndex) {
+//		// TODO Auto-generated method stub
+//		return (Port) randomGenerator.ints(randomIndex);
+//	}
+
+	
 
 	
 }

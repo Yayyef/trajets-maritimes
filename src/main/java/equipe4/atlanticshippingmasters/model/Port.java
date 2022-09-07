@@ -1,5 +1,7 @@
 package equipe4.atlanticshippingmasters.model;
 
+import java.util.Random;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,5 +20,6 @@ public class Port {
 	private int idPort;
 	private String name;
 	private String coordinates;
+	 
 	
 }

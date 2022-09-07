@@ -1,5 +1,8 @@
 package equipe4.atlanticshippingmasters.controllers;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -18,13 +21,10 @@ public class PortController {
 	@Autowired
 	private PortService ps;
 	
-	@GetMapping("/")
+	@GetMapping({"/index","/"})
 	public String index(Model model) {
-		Iterable<Port> iterablePortlist=ps.getAllPorts();
 		
-		List<Port> portList = StreamSupport.stream(iterablePortlist.spliterator(), false).collect(Collectors.toList()).subList(0, 3);
-		
-		model.addAttribute("ports",portList);
+		model.addAttribute("ports",shortenPortList());
 		
 		return "index";
 
@@ -38,5 +38,27 @@ public class PortController {
 		model.addAttribute("port", ps.getPort(id).orElse(null));
 		return "ports";
 	}
+	
+	@GetMapping("/about")
+	public String aboutView() {
 
+		return "about";
+	}
+	public List<Port> shortenPortList(){
+		Iterable<Port> iterablePortlist=ps.getAllPorts();
+		List<Port> portList= StreamSupport.stream(iterablePortlist.spliterator(), false).collect(Collectors.toList());
+		
+		List<Port> randomList = new ArrayList<>();
+		Random random = new Random();
+		for (int i = 0; i < 3; i++) {
+			int randomIndex = random.nextInt(portList.size());
+			Port randomPort= portList.get(randomIndex);
+			randomList.add(randomPort);
+			portList.remove(randomIndex);
+		}
+		
+		return randomList;
+		
+	}
+	
 }

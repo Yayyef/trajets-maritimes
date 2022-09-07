@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+	
+<head>
+<title>Welcome</title>
+<link rel="stylesheet" type="text/css" th:href="@{/layouts/style.css}"/>
+</head>
+<body>
+
+	<section layout:fragment="custom-content">
+		
+<!-- 		<div th:each="port : ${ports}"> -->
+<!-- 			<p th:text="${port.name}"></p> -->
+<!-- 			<p th:text="${port.coordinates}"></p> -->
+<!-- 		</div> -->
+		
+	<div class="container-fluid bg-light my-3" >
+		
+		 <div class="row ">
+			    <div class="col-12 px-3 py-3">
+			      <p >Containers are the most basic layout element in Bootstrap and are required when
+			      using our default grid system. Containers are used to contain, pad, and (sometimes) 
+			      center the content within them. While containers can be nested, most layouts do not require 
+			      a nested container. </p>
+					
+			    </div>
+			    
+			    
+			  		 
+			</div>
+		</div>
+        
+    
+	</section>
+
+	
+</body>
+</html>
