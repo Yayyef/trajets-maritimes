@@ -1,6 +1,5 @@
 package equipe4.atlanticshippingmasters.model;
 
-
 import java.util.Set;
 
 import javax.persistence.Entity;
