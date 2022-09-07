@@ -46,6 +46,7 @@ public class CalculatorController {
 		TravelDistanceCalculator tdc = new TravelDistanceCalculator(allParams.get("step" + allParams.size()), allParams.get("step" + 1));
 		System.out.println("Last step distance is " + tdc.getDistance() + "km");
 		totalDistance += tdc.getDistance();
+		
 		System.out.println("TOTAL distance is " + totalDistance + "km");
 		
 		return getCalculator(model);

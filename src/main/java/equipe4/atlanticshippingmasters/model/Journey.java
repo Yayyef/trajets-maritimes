@@ -1,6 +1,7 @@
 package equipe4.atlanticshippingmasters.model;
 
-import java.util.ArrayList;
+
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import java.util.List;
 import lombok.Data;
 
 @Data
@@ -22,9 +22,7 @@ public class Journey {
 	private int idJourney;
 	private int totalDistance;
 	
-//	@OneToMany( targetEntity=Step.class, mappedBy="idStep" )
-//    private List<Step> st = new ArrayList<>();
-
-	
+	@OneToMany(mappedBy="idJourneyFk")
+    private Set<Step> st;
 	
 }
