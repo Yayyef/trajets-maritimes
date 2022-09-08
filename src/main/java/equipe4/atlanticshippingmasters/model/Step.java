@@ -20,13 +20,23 @@ public class Step {
 	private int idStep;
 	private int distance;
 	private int journeyOrder;
-	private int idPortDeparture;
-	private int idPortArrival;
+	//private int idPortDeparture;
+	//private int idPortArrival; 
 	//private int idJourneyFk;
+
+	private int idJourneyFk;
 	
 	
 	@ManyToOne
-	@JoinColumn (name = "idJourneyFk", referencedColumnName = "idJourney")
-	private Journey idJourneyFk;
+    @JoinColumn(name="idPortDeparture", referencedColumnName = "idPort",  nullable=false)
+    private Port idPortDeparture;
+	
+    @ManyToOne
+    @JoinColumn(name="idPortArrival", referencedColumnName = "idPort",  nullable=false)
+    private Port idPortArrival;
+	
+
+	
+	
 }
 
