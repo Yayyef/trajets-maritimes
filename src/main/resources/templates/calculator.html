@@ -8,36 +8,58 @@
 </head>
 <body>
 
-	<section layout:fragment="custom-content">
+	<section layout:fragment="custom-content" class="d-flex justify-content-center">
 
+		<div>
 		<h3>Bienvenue dans notre calculateur d'itinéraires</h3>
-<!-- th:action="@{/greeting}" th:object="${greeting}" -->
-		<form action="#" th:action="@{/calculator}" th:method="post">
+		
+<!-- 		Je spécifie la méthode de mon formulaire avec th:method="post" -->
+		<form action="#" th:action="@{/calculator}" th:method="post" class="p-3 border border-primary">
 			<fieldset>
 			
+				<div>
 				<label for="step1" class="form-label">Choisissez un port
 					d'attache</label> 
+<!-- 					Je fais un foreach pour afficher tous les ports en options -->
 				<select id="step1" class="form-select" aria-label="Default select example" th:name="step1">
 					<option th:each="port : ${ports}" th:value="${port.coordinates}"
 						th:text="${port.name}" th:name="step1"/>
 				</select> 
+				</div>
+				
+				<div>
+				<label for="step2" class="form-label">Ajoutez une étape à votre itinéraire</label> 
 				<select id="step2" class="form-select" aria-label="Default select example" th:name="step2">
 					<option th:each="port : ${ports}" th:value="${port.coordinates}"
 						th:text="${port.name}" th:name="step2"/>
 				</select> 
+				</div>
+				<div>
+				<label for="step3" class="form-label">Ajoutez une étape à votre itinéraire</label> 
 				<select id="step3" class="form-select" aria-label="Default select example" th:name="step3">
 					<option th:each="port : ${ports}" th:value="${port.coordinates}"
-						th:text="${port.name}" th:name="step3"/>
+						th:text="${port.name}" th:name="step2"/>
 				</select> 
+				</div>
+				<div>
+				<label for="step4" class="form-label">Ajoutez une étape à votre itinéraire</label> 
 				<select id="step4" class="form-select" aria-label="Default select example" th:name="step4">
 					<option th:each="port : ${ports}" th:value="${port.coordinates}"
 						th:text="${port.name}" th:name="step4"/>
 				</select> 
-				<button type="button" id="addStepButton">Ajouter une étape</button>
-				<button>Calculer</button>
+				</div>
+
+			<div>
+				<button type="button" id="addStepButton" class="btn btn-primary">Ajouter une étape</button>
+<!-- 				Bouton de type submit dans le formulaire appelle la méthode postCalculator de mon CalculatorController -->
+				<button type="submit" class="btn btn-primary">Calculer</button>
+			</div>
+				
 
 			</fieldset>
 		</form>
+		</div>
+		
 
 	</section>
 

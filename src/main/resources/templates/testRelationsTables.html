@@ -10,19 +10,20 @@
 
 	<section layout:fragment="custom-content">
 
-		<div th:each="step : ${steps}">
-			<p th:text="${step.idStep}"></p>
-			<p th:text="${step.idPortDeparture.name}"></p>
-			<p th:text="${step.idPortDeparture.coordinates}"></p>
-			<p th:text="${step.idPortArrival.name}"></p>
-			<p th:text="${step.idPortArrival.coordinates}"></p>
-			<p th:text="${step.idJourneyFk.totalDistance}"></p>
-		</div>	
-		
-<!-- 		<div th:each="step : ${journey.st}"> -->
+<!-- 		<div th:each="step : ${steps}"> -->
 <!-- 			<p th:text="${step.idStep}"></p> -->
-<!-- 		</div>			 -->
-
+<!-- 			<p th:text="${step.idPortDeparture.name}"></p> -->
+<!-- 			<p th:text="${step.idPortDeparture.coordinates}"></p> -->
+<!-- 			<p th:text="${step.idPortArrival.name}"></p> -->
+<!-- 			<p th:text="${step.idPortArrival.coordinates}"></p> -->
+<!-- 			<p th:text="${step.idJourneyFk.totalDistance}"></p> -->
+<!-- 		</div>	 -->
+		<div th:each="journey : ${journeys}">
+		<div th:text="'This is journey number ' + ${journey.idJourney}"></div>
+		<div th:each="step : ${journey.st}">
+			<p th:text="'This is step number ' + ${step.idStep} + ' départ= ' + ${step.idPortDeparture.name} + ' départ= ' + ${step.idPortArrival.name}"></p>
+		</div>			
+		</div>
 	</section>
 
 </body>

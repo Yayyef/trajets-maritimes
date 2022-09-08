@@ -14,8 +14,10 @@ public class TravelDistanceCalculator {
 		private double latitude;
 		private double longitude;
 
+		// Constructeur Coordinates
 		public Coordinates(String coordinates) {
 			ArrayList<Double> coorArray = parse(coordinates);
+			// Conversion des minutes et secondes d'angle en degrés. Puis stockage dans l'objet coordonnées.
 			this.latitude = coorArray.get(0) + coorArray.get(1) / 60 + coorArray.get(2) / 3600;
 			this.longitude = coorArray.get(3) + coorArray.get(4) / 60 + coorArray.get(5) / 3600;
 		}
@@ -23,7 +25,9 @@ public class TravelDistanceCalculator {
 		// Convertisseur des coordonnées en un tableau d'entiers pour le constructeur
 		// coordinates ArrayList<Integer>
 		public static ArrayList<Double> parse(String coordinatesString) {
+			// On a pas le droit de faire """ donc "\"".
 			String[] cooArr = coordinatesString.replace("\"", "").replace(" ", "").split("[^0-9.\s*]");
+			// Conversion de l'array de String en array de double pour pouvoir fare des opérations mathématiques.
 			ArrayList<Double> convertToDouble = new ArrayList<>();
 			for (String n : cooArr) {
 				convertToDouble.add(Double.valueOf(n));

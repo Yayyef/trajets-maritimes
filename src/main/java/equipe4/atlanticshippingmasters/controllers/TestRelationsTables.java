@@ -18,15 +18,18 @@ public class TestRelationsTables {
 	@Autowired
 	private JourneyService js;
 	
-	@GetMapping("/testRelationsTables")
-	public String GetView(Model model) {
-		model.addAttribute("steps", stepService.getAllSteps());
+	@GetMapping("/testRelationsTables/{id}")
+	public String GetView(Model model, @PathVariable String id) {
+//		model.addAttribute("steps", stepService.getAllSteps());
+		
 //		System.out.println(js.getJourney(1).orElse(null).getIdJourney());
-//		for (Step s : js.getJourney(1).orElse(null).getSt()) {
+		
+//		for (Step s : js.getJourney(Integer.valueOf(id)).orElse(null).getSt()) {
 //			System.out.println(s.getIdStep());
 //		}
-		
-//		model.addAttribute("journey", js.getJourney(1).orElse(null));
+//		
+//		model.addAttribute("journey", js.getJourney(Integer.valueOf(id)).orElse(null));
+		model.addAttribute("journeys", js.getAllJourneys());
 		
 		return "testRelationsTables";
 	}

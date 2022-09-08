@@ -21,9 +21,7 @@ public class Step {
 	private int distance;
 	private int journeyOrder;
 	
-	@ManyToOne
-    @JoinColumn(name="idJourneyFk", referencedColumnName = "idJourney",  nullable=false)
-	private Journey idJourneyFk;
+	private int idJourneyFk;
 	
 	// Name c'est le nom de la colonne de CE modèle. ReferencedColumnname vise le modèle de l'autre table
 	@ManyToOne

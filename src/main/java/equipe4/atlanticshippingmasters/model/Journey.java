@@ -18,7 +18,7 @@ import lombok.Data;
 public class Journey {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int idJourney;
 	private int totalDistance;
 	
