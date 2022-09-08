@@ -1,0 +1,75 @@
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+    <head>
+        <meta charset="UTF-8">
+        
+<title>Historique des itiniéraires calculés</title>
+
+<style>
+
+.table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gold blue; 
+}
+
+      .btn {
+      background-color: white;
+      color: black;
+      border: 2px solid #4CAF50; 
+      }
+    </style>
+
+</head>
+<body>
+       
+        
+        <section layout:fragment="custom-content">
+        
+        
+        
+        
+         <div class="container">
+            <hr/>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID </th> 
+                       <th> Nom </th> 
+                        <th>Distance</th>
+                        <th>Parcours</th>
+                                               
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr th:each="s: ${steps}">
+                     
+                      <td th:text="${s.idStep}"></td> 
+                     
+                      <td th:text="${s.idPortDeparture.name}">
+                        <div> <button class="btn" type="submit">Etape</button> </div>
+                      </td> 
+                      
+                      <td th:text="${s.distance}">
+                       <div> <button class="btn" type="submit"></button> Etape</div>
+                      </td> 
+                      
+                      
+                     <td th:text="${s.journeyOrder}">
+                     <button class="btn" type="submit"></button> 
+                     </td>
+                  <!--   <td> <a th:href="@{'j/steps/' + ${j.idJOurney}}">Etape</a> </td> -->
+                         
+                         
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+
+	</section>
+
+</body>
+</html>

@@ -22,7 +22,7 @@ public class Journey {
 	private int idJourney;
 	private int totalDistance;
 	
-	@OneToMany(mappedBy="idJourneyFk")
-    private Set<Step> st;
+	@OneToMany (mappedBy = "idJourneyFk") 
+	private Set<Step> steps;
 	
 }

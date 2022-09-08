@@ -20,7 +20,7 @@ public class Step {
 	private int idStep;
 	private int distance;
 	private int journeyOrder;
-	
+
 	private int idJourneyFk;
 	
 	// Name c'est le nom de la colonne de CE modèle. ReferencedColumnname vise le modèle de l'autre table
@@ -30,5 +30,6 @@ public class Step {
 	@ManyToOne
 	@JoinColumn(name="idPortArrival", referencedColumnName = "idPort",  nullable=false)
 	private Port idPortArrival;
+
 }
 

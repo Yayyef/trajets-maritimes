@@ -21,14 +21,12 @@ public class StepController {
 		return "steps";
 	}
 	
+	
 	/*@GetMapping("/steps/{id}")
 	public String VueStep(@PathVariable Integer id, Model model) {
 		model.addAttribute("steps", stepService.getStep(id));
 		return "steps";*/
-		
-		
-//}
-		
+
 		//List <Step> st = stepService.getStep(id)
 		//model.addAttribute("steps", st );
 		//return "steps";
