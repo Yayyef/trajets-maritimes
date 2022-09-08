@@ -1,6 +1,5 @@
 package equipe4.atlanticshippingmasters.controllers;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -46,6 +45,7 @@ public class PortController {
 	}
 	public List<Port> shortenPortList(){
 		Iterable<Port> iterablePortlist=ps.getAllPorts();
+		//converted itrableportlist to a list
 		List<Port> portList= StreamSupport.stream(iterablePortlist.spliterator(), false).collect(Collectors.toList());
 		
 		List<Port> randomList = new ArrayList<>();
