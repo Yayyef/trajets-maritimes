@@ -4,62 +4,63 @@
 	layout:decorate="~{layouts/layout}">
 <head>
 <title>Calculateur</title>
-<script type="text/javascript" th:src="@{/js/calculator.js}" async="true"></script>
+<script th:inline="javascript">
+// 	On récupère ici la variable portJson du controlleur pour la passer au fichier js
+	var ports = `[(${portsJson})]`;
+</script>
+<script type="text/javascript" th:src="@{/js/calculator.js}"
+	async="true"></script>
 </head>
 <body>
 
-	<section layout:fragment="custom-content" class="d-flex justify-content-center">
+	<section layout:fragment="custom-content"
+		class="my-5 d-flex justify-content-center">
 
 		<div>
-		<h3>Bienvenue dans notre calculateur d'itinéraires</h3>
-		
-<!-- 		Je spécifie la méthode de mon formulaire avec th:method="post" -->
-		<form action="#" th:action="@{/calculator}" th:method="post" class="p-3 border border-primary">
-			<fieldset>
-			
-				<div>
-				<label for="step1" class="form-label">Choisissez un port
-					d'attache</label> 
-<!-- 					Je fais un foreach pour afficher tous les ports en options -->
-				<select id="step1" class="form-select" aria-label="Default select example" th:name="step1">
-					<option th:each="port : ${ports}" th:value="${port.coordinates}"
-						th:text="${port.name}" th:name="step1"/>
-				</select> 
-				</div>
-				
-				<div>
-				<label for="step2" class="form-label">Ajoutez une étape à votre itinéraire</label> 
-				<select id="step2" class="form-select" aria-label="Default select example" th:name="step2">
-					<option th:each="port : ${ports}" th:value="${port.coordinates}"
-						th:text="${port.name}" th:name="step2"/>
-				</select> 
-				</div>
-				<div>
-				<label for="step3" class="form-label">Ajoutez une étape à votre itinéraire</label> 
-				<select id="step3" class="form-select" aria-label="Default select example" th:name="step3">
-					<option th:each="port : ${ports}" th:value="${port.coordinates}"
-						th:text="${port.name}" th:name="step2"/>
-				</select> 
-				</div>
-				<div>
-				<label for="step4" class="form-label">Ajoutez une étape à votre itinéraire</label> 
-				<select id="step4" class="form-select" aria-label="Default select example" th:name="step4">
-					<option th:each="port : ${ports}" th:value="${port.coordinates}"
-						th:text="${port.name}" th:name="step4"/>
-				</select> 
+			<h3 class="pb-2">Bienvenue dans notre calculateur d'itinéraires</h3>
+
+			<!-- 		Je spécifie la méthode de mon formulaire avec th:method="post" -->
+			<form action="#" th:action="@{/calculator}" th:method="post" class="">
+				<fieldset class="py-5 px-3 border border-primary">
+
+					<div>
+						<label for="step1" class="form-label">Choisissez un port
+							d'attache</label>
+						<!-- 					Je fais un foreach pour afficher tous les ports en options -->
+						<select id="step1" class="form-select"
+							aria-label="Default select example" th:name="step1">
+							<option th:each="port : ${ports}" th:value="${port.idPort}"
+								th:text="${port.name}" th:name="step1" />
+						</select>
+					</div>
+
+					<div>
+						<label for="step2" class="form-label">Ajoutez une étape à
+							votre itinéraire</label> <select id="step2" class="form-select"
+							aria-label="Default select example" th:name="step2">
+							<option th:each="port : ${ports}" th:value="${port.idPort}"
+								th:text="${port.name}" th:name="step2" />
+						</select>
+					</div>
+<!-- 					Le pointer me permet d'insérér les nouveaux <select> au bon endroit avec js -->
+					<div id="pointer"></div>
+
+				</fieldset>
+				<div class="d-flex justify-content-between p-3">
+					<button type="button" id="addStepButton" class="btn btn-primary">Ajouter
+						une étape</button>
+					<!-- 				Bouton de type submit dans le formulaire appelle la méthode postCalculator de mon CalculatorController -->
+					<button type="submit" class="btn btn-primary bg-danger">Calculer</button>
 				</div>
 
-			<div>
-				<button type="button" id="addStepButton" class="btn btn-primary">Ajouter une étape</button>
-<!-- 				Bouton de type submit dans le formulaire appelle la méthode postCalculator de mon CalculatorController -->
-				<button type="submit" class="btn btn-primary">Calculer</button>
+			</form>
+
+
+			<div th:if="${journey != null}">
+				<p th:text="${journey.idJourney}"></p>
 			</div>
-				
 
-			</fieldset>
-		</form>
 		</div>
-		
 
 	</section>
 

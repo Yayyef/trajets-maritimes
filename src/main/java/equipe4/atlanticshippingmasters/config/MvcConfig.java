@@ -3,7 +3,7 @@ package equipe4.atlanticshippingmasters.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import nz.net.ultraq.thymeleaf.LayoutDialect;
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 
 @Configuration
 public class MvcConfig {
