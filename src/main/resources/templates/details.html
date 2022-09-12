@@ -1,0 +1,74 @@
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+    <head>
+        <meta charset="UTF-8">
+        
+<title>Details de Parcours</title>
+
+</head>
+<body>
+       
+        
+        <section layout:fragment="custom-content">
+        
+        
+        
+        
+         <div class="container">
+         	<div class="row ">
+			    <div class="col-12 px-3 py-3" >
+			    	<div class="container px-4 text-center">
+					  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+					    <div class="col">
+					     <div class="p-3 border bg-light" >
+							<p th:text="${journey.idJourney} + ' Steps'"></p>
+							<p th:text="' Distance totale parcourue '+ ${journey.totalDistance} + ' Km'"></p>
+						</div>
+					    </div>
+					    
+					  </div>
+					  <table class="table">
+                <thead  >
+                    <tr >
+                        <th >Arrival Port </th> 
+                       <th > Departure Port </th> 
+                        <th >Distance</th>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr th:each="detail:${journey.steps}">
+                     
+                     <td th:text="${detail.idPortDeparture.name}"></td> 
+	    					<td th:text="${detail.idPortArrival.name}"></td> 
+	    					<td th:text="${detail.distance}"></td> 
+
+                    </tr>
+                </tbody>
+            </table>
+					</div>
+			   
+<!-- 			    			<tr>  -->
+<!-- 				    			<td th:text="${journey.idJourney}"></td> -->
+<!-- 				    			<td th:text="${journey.totalDistance}"> </td> -->
+<!-- 			    			</tr> -->
+<!-- 			    			<tr th:each="detail:${journey.steps}"> -->
+			    				
+<!-- 			    					<td th:text="${detail.idPortDeparture.name}"></td> -->
+<!-- 			    					<td th:text="${detail.idPortArrival.name}"></td> -->
+			    				
+<!-- 			    			</tr> -->
+			    		
+
+
+                     
+        		</div>
+       		</div>
+        </div>
+       
+
+	</section>
+
+</body>
+</html>
