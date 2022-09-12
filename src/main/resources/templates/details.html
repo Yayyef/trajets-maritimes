@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+
+<title>Parcour Total</title>
+
+<link rel="stylesheet" type="text/css" th:href="@{/layouts/style.css}"/>
+
+
+</head>
+<body>
+
+
+	<section layout:fragment="custom-content">
+
+
+
+
+		<div class="container">
+	
+
+
+				<div th:text= "${journey.totalDistance}"></div>
+				<div  th:each = " s: ${journey.steps}" >
+					<div th:text = "'Le port de départ ' +  ${s.idPortDeparture.name}"></div>
+					<div th:text = "'Le port de d\'arrivée ' +  ${s.idPortArrival.name}"></div>
+				</div>
+				
+	
+				</tbody>
+				</table>
+			</div>
+			
+			</section>
+
+	
+
+
+</body>
+</html>

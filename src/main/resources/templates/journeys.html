@@ -37,21 +37,25 @@
 				
 					  <tr th:each="journey : ${journeys}">
 						<td th:text="${journey.idJourney}"></td>
+						<td th:text="${journey.totalDistance}"></td>
 						<td th:text="${#lists.size(journey.steps)} + ' étapes'"></td>
 						
 					   <td> <a th:href="'details/' + ${journey.idJourney}">Etapes</a> </td>
-						<td>	<div th:each="step : ${journey.steps}">
+						
+						
+						<td>	<div th:each="step : ${journey.steps}" >
+								
 								<p
-									th:text="'This is step number ' + ${step.idStep} + ' départ: ' + ${step.idPortDeparture.name} + ' arrivée: ' + ${step.idPortArrival.name}"></p>
-							</div> </td>
-					
-		
-					</tr>
+                                	th:text="'This is step number ' + ${step.idStep} + ' départ: ' + ${step.idPortDeparture.name} + ' arrivée: ' + ${step.idPortArrival.name}"></p>
+							   </div> </td>
+					    </tr>
 				</tbody>
 				</table>
 			</div>
 			
 			</section>
+			
+			
 <!-- 				                <tbody> -->
 <!-- 				                     <tr th:each="j: ${journeys}"> -->
 
