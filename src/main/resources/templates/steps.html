@@ -6,22 +6,6 @@
         
 <title>Historique des itiniéraires calculés</title>
 
-<style>
-
-.table {
-  display: table;
-  border-collapse: separate;
-  border-spacing: 2px;
-  border-color: gold blue; 
-}
-
-      .btn {
-      background-color: white;
-      color: black;
-      border: 2px solid #4CAF50; 
-      }
-    </style>
-
 </head>
 <body>
        
@@ -32,14 +16,16 @@
         
         
          <div class="container">
-            <hr/>
+         	<div class="row ">
+			    <div class="col-12 px-3 py-3">
+      
             <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID </th> 
-                       <th> Nom </th> 
-                        <th>Distance</th>
-                        <th>Parcours</th>
+                <thead  >
+                    <tr >
+                        <th >ID </th> 
+                       <th > Nom </th> 
+                        <th >Distance</th>
+                        <th >Parcours</th>
                                                
                     </tr>
                 </thead>
@@ -49,7 +35,7 @@
                       <td th:text="${s.idStep}"></td> 
                      
                       <td th:text="${s.idPortDeparture.name}">
-                        <div> <button class="btn" type="submit">Etape</button> </div>
+                        <div> <button class="btn btn-primary" type="submit">Etape</button> </div>
                       </td> 
                       
                       <td th:text="${s.distance}">
@@ -66,6 +52,8 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        </div>
         </div>
        
 
