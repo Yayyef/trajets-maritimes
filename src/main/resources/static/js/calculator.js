@@ -1,14 +1,17 @@
 const addStepButton = document.querySelector("#addStepButton");
 
+// On créé un 
 const stepModule = (() => {
 
 	// Je récupère ma chaîne de caractère envoyé par le controlleur et la transforme en JSON
 	let portListIterator = 3;
+	// On récupère la chaîne de caractères ports, on la converti au format JSON pour en exploiter le contenu lors de la génération du HTML.
 	const portList = JSON.parse(ports);
-	// Queryselector
+	// Queryselector permet de récupérer un élément du DOM (Document Object Model, la représentation des noeuds html sous form d'abre) comme variable pour pouvoir le manipuler
 	const pointer = document.querySelector("#pointer");
 	const ignoreList = [];
 
+	// On génère le html
 	const generateOptions = () => {
 		let portOptionsHtml = "";
 		// On fait une boucle pour créér les 
@@ -20,10 +23,19 @@ const stepModule = (() => {
 	}
 	const generateSelect = () => {
 		return `<div>
+				
 				<label for="step${portListIterator}" class="form-label">Ajoutez une étape à votre itinéraire</label> 
-				<select id="step${portListIterator}" class="form-select" aria-label="Sélection de l'étape" name="step${portListIterator}">
+				<div  class="d-flex">
+				
+				<div>
+					<select id="step${portListIterator}" class="form-select" aria-label="Sélection de l'étape" name="step${portListIterator}">
 				${generateOptions()}
 				</select> 
+				</div>
+				
+				<button type="button" id="removeButton" class="btn btn-danger">Supprimer étape</button>
+				</div>
+				
 				</div>`;
 	}
 
@@ -37,60 +49,11 @@ const stepModule = (() => {
 		}
 
 	}
+	
+	// On renvoie un seulement la fonction insert
 	return {
 		insert
 	};
 })();
+
 addStepButton.addEventListener("click", stepModule.insert);
-
-
-
-
-
-const addStep = () => {
-
-	//    const option = document.createElement("option");
-	//    option.textContent = "Ok";
-	//
-	//    const stepField = document.createElement("select");
-	//    stepField.appendChild(option);
-	//    stepField.classList.add("form-select");
-	//    
-	//    
-	//    const label = document.createElement("label");
-	//    label.classList.add("form-label");
-	//    label.textContent = "Ajoutez une étape à votre itinéraire";
-	//
-	//    const selectorComponent = document.createElement("div");
-	//    selectorComponent.appendChild(label);
-	//    selectorComponent.appendChild(stepField);
-	//	
-	//    pointer.insertAdjacentElement("beforebegin", selectorComponent);
-
-	const generateOptions = () => {
-		let portOptionsHtml = "";
-		for (i = 0; i < portList.length; i++) {
-			portOptionsHtml += `<option value="${portList[i].idPort}"
-						name="step${portListIterator}">${portList[i].name}</option>`;
-		}
-		return portOptionsHtml;
-	}
-
-	const newSelect = `<div>
-				<label for="step${portListIterator}" class="form-label">Ajoutez une étape à votre itinéraire</label> 
-				<select id="step${portListIterator}" class="form-select" aria-label="Default select example" name="step${portListIterator}">
-				${generateOptions()}
-				</select> 
-				</div>`;
-
-	pointer.insertAdjacentHTML("beforebegin", newSelect);
-
-	if (portListIterator <= portList.length) {
-		portListIterator++;
-	} else {
-		addStepButton.remove();
-	}
-}
-
-
-
