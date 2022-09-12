@@ -65,19 +65,6 @@ public class StepForge {
 
 		return (int) distance / 1000;
 	}
-
-	// Le getter pour distance
-	public int getDistance() {
-		return distance;
-	}
-	
-	public Port getDeparturePort() {
-		return departurePort;
-	}
-
-	public Port getArrivalPort() {
-		return arrivalPort;
-	}
 	
 	public Step buildStep(int journeyId, int order) {
 		Step step = new Step();
@@ -88,6 +75,18 @@ public class StepForge {
 		step.setDistance(this.getDistance());
 		return step;
 	}
+	
+	// Le getter pour distance
+		public int getDistance() {
+			return distance;
+		}
+		
+		public Port getDeparturePort() {
+			return departurePort;
+		}
 
+		public Port getArrivalPort() {
+			return arrivalPort;
+		}
 	
 }

@@ -35,12 +35,15 @@ public class CalculatorController {
 	public String getCalculator(Model model, Journey journey) {
 		// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRG!
 		Iterable<Port> portList = ps.getAllPorts();
+		
 		for (Port p : portList) {
 			p.setCoordinates(p.getCoordinates().replace("\"", ""));
 		}
+		// On tranforme en json la liste pour la passer à mon javascript
 		String portsJson = new Gson().toJson(ps.getAllPorts());
-		System.out.println(portsJson.replace("\\u0027", "'"));
-		portsJson.replace("\"", "");
+		System.out.println(portsJson);
+		// On enlève tous les guillemets de nos coordonnéés pour 
+//		portsJson.replace("\"", "");
 		model.addAttribute("ports", ps.getAllPorts());
 		model.addAttribute("portsJson", portsJson);
 		model.addAttribute("journey", journey);

@@ -5,7 +5,7 @@
 <head>
 <title>Calculateur</title>
 <script th:inline="javascript">
-// 	On récupère ici la variable portJson du controlleur pour la passer au fichier js
+	// 	On récupère ici la variable portJson du controlleur pour la passer au fichier js
 	var ports = `[(${portsJson})]`;
 </script>
 <script type="text/javascript" th:src="@{/js/calculator.js}"
@@ -28,7 +28,7 @@
 							d'attache</label>
 						<!-- 					Je fais un foreach pour afficher tous les ports en options -->
 						<select id="step1" class="form-select"
-							aria-label="Default select example" th:name="step1">
+							aria-label="Sélection du port d'attache" th:name="step1">
 							<option th:each="port : ${ports}" th:value="${port.idPort}"
 								th:text="${port.name}" th:name="step1" />
 						</select>
@@ -37,12 +37,12 @@
 					<div>
 						<label for="step2" class="form-label">Ajoutez une étape à
 							votre itinéraire</label> <select id="step2" class="form-select"
-							aria-label="Default select example" th:name="step2">
+							aria-label="Sélection de l'étape" th:name="step2">
 							<option th:each="port : ${ports}" th:value="${port.idPort}"
 								th:text="${port.name}" th:name="step2" />
 						</select>
 					</div>
-<!-- 					Le pointer me permet d'insérér les nouveaux <select> au bon endroit avec js -->
+					<!-- 					Le pointer me permet d'insérér les nouveaux <select> au bon endroit avec js -->
 					<div id="pointer"></div>
 
 				</fieldset>
@@ -55,13 +55,25 @@
 
 			</form>
 
+			<div th:if="${journey.idJourney != 0}">
 
-			<div th:if="${journey != null}">
-				<p th:text="${journey.idJourney}"></p>
+				<div class="toast-container position-fixed bottom-0 end-0 p-3 m-5 ">
+
+					<div class="toast show bg-success" role="alert" aria-live="assertive"
+						aria-atomic="true">
+						<div class="toast-header">
+							<img src="..." class="rounded me-2" alt="..."> <strong
+								class="me-auto">Succès!</strong> <small>11 mins ago</small>
+							<button type="button" class="btn-close" data-bs-dismiss="toast"
+								aria-label="Close"></button>
+						</div>
+						<div class="toast-body"
+							th:text="'Le parcours ' + ${journey.idJourney} + ' a bien été enregistré!'">Hello,
+							world! This is a toast message.</div>
+					</div>
+
+				</div>
 			</div>
-
-		</div>
-
 	</section>
 
 </body>
