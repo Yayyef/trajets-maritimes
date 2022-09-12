@@ -19,16 +19,16 @@
 
 
 		<div class="container">
-			<hr />
+		
 				<table class="table table-striped">
 				
 					<thead class="thead-dark">
 						<tr>
 	
 	
-	                        <th scope="col">ID</th>
-							<th scope="col">Parcours</th>
-							<th scope="col">Etapes</th>
+	                        <th >ID</th>
+							<th >Parcours</th>
+							<th >Etapes</th>
 	
 						</tr>
 					</thead>
@@ -36,40 +36,18 @@
 					<tbody>
 				
 					  <tr th:each="journey : ${journeys}">
-						<td th:text="${journey.idJourney}"></td>
-						<td th:text="${journey.totalDistance}"></td>
-						<td th:text="${#lists.size(journey.steps)} + ' étapes'"></td>
-						
-					   <td> <a th:href="'details/' + ${journey.idJourney}">Etapes</a> </td>
-						
-						
-						<td>	<div th:each="step : ${journey.steps}" >
-								
-								<p
-                                	th:text="'This is step number ' + ${step.idStep} + ' départ: ' + ${step.idPortDeparture.name} + ' arrivée: ' + ${step.idPortArrival.name}"></p>
-							   </div> </td>
-					    </tr>
+
+							<td th:text="${journey.idJourney}"></td>
+							<td th:text="${#lists.size(journey.steps)} + ' étapes'"></td>
+							
+						   <td> <a class="btn btn-primary btn-sm" th:href="'details/' + ${journey.idJourney}">Étapes</a> </td>
+
+						</tr>
 				</tbody>
 				</table>
 			</div>
 			
 			</section>
-			
-			
-<!-- 				                <tbody> -->
-<!-- 				                     <tr th:each="j: ${journeys}"> -->
-
-<!-- 				                      <p th:text="${j.idJourney}"></p>  -->
-<!-- 				                      <p th:text="${j.totalDistance}"></p>  -->
-
-<!-- 				                      <p th:each="$s : {j.steps}"> -->
-<!-- 				                      	<p th:text="${s.idStep}"></p> -->
-<!-- 				                      </p>  -->
-
-<!-- 				                    </tr> -->
-	      
-	
-
 
 </body>
 </html>

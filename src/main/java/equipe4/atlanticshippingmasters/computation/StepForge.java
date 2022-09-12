@@ -2,11 +2,13 @@ package equipe4.atlanticshippingmasters.computation;
 
 import java.util.ArrayList;
 
-public class TravelDistanceCalculator {
+import equipe4.atlanticshippingmasters.model.Port;
+import equipe4.atlanticshippingmasters.model.Step;
 
-	private Coordinates departure;
-	private Coordinates arrival;
+public class StepForge {
 	private int distance;
+	private Port departurePort;
+	private Port arrivalPort;
 
 	// Je créé une class nested coordinates qui stocke les lagitudes et longitude en
 	// degrés avec conversion des minutes et des secondes d'angle
@@ -17,36 +19,41 @@ public class TravelDistanceCalculator {
 		// Constructeur Coordinates
 		public Coordinates(String coordinates) {
 			ArrayList<Double> coorArray = parse(coordinates);
-			// Conversion des minutes et secondes d'angle en degrés. Puis stockage dans l'objet coordonnées.
+			// Conversion des minutes et secondes d'angle en degrés. Puis stockage dans
+			// l'objet coordonnées.
 			this.latitude = coorArray.get(0) + coorArray.get(1) / 60 + coorArray.get(2) / 3600;
 			this.longitude = coorArray.get(3) + coorArray.get(4) / 60 + coorArray.get(5) / 3600;
 		}
-
 		// Convertisseur des coordonnées en un tableau d'entiers pour le constructeur
 		// coordinates ArrayList<Integer>
-		public static ArrayList<Double> parse(String coordinatesString) {
+		private ArrayList<Double> parse(String coordinatesString) {
 			// On a pas le droit de faire """ donc "\"".
 			String[] cooArr = coordinatesString.replace("\"", "").replace(" ", "").split("[^0-9.\s*]");
-			// Conversion de l'array de String en array de double pour pouvoir fare des opérations mathématiques.
+			// Conversion de l'array de String en array de double pour pouvoir fare des
+			// opérations mathématiques.
 			ArrayList<Double> convertToDouble = new ArrayList<>();
 			for (String n : cooArr) {
 				convertToDouble.add(Double.valueOf(n));
 			}
 			return convertToDouble;
-		};
+		}
 	}
 
+	
 	// Le constructeur
-	public TravelDistanceCalculator(String strArrival, String strDeparture) {
-		this.departure = new Coordinates(strDeparture);
-		this.arrival = new Coordinates(strArrival);
+	public StepForge(Port departure, Port arrival) {
+		this.departurePort = departure;
+		this.arrivalPort = arrival;
 		this.distance = computeDistance();
 	}
 
 	// La fonction calcule la distance en fonction des deux champs coordonnées de
 	// l'instance
-	public int computeDistance() {
-
+	private int computeDistance() {
+		
+		Coordinates departure = new Coordinates(departurePort.getCoordinates());
+		Coordinates arrival = new Coordinates(arrivalPort.getCoordinates());
+		
 		final int R = 6371; // Radius of the earth
 
 		double latDistance = Math.toRadians(arrival.latitude - departure.latitude);
@@ -58,10 +65,28 @@ public class TravelDistanceCalculator {
 
 		return (int) distance / 1000;
 	}
-
-	// Le getter pour distance
-	public int getDistance() {
-		return distance;
+	
+	public Step buildStep(int journeyId, int order) {
+		Step step = new Step();
+		step.setJourneyOrder(order);
+		step.setIdJourneyFk(journeyId);
+		step.setIdPortDeparture(this.getDeparturePort());
+		step.setIdPortArrival(this.getArrivalPort());
+		step.setDistance(this.getDistance());
+		return step;
 	}
+	
+	// Le getter pour distance
+		public int getDistance() {
+			return distance;
+		}
+		
+		public Port getDeparturePort() {
+			return departurePort;
+		}
 
+		public Port getArrivalPort() {
+			return arrivalPort;
+		}
+	
 }

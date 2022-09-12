@@ -2,7 +2,6 @@ package equipe4.atlanticshippingmasters.controllers;
 
 
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,12 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import equipe4.atlanticshippingmasters.computation.TravelDistanceCalculator;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import equipe4.atlanticshippingmasters.computation.StepForge;
 import equipe4.atlanticshippingmasters.model.Journey;
+import equipe4.atlanticshippingmasters.model.Port;
+import equipe4.atlanticshippingmasters.model.Step;
 import equipe4.atlanticshippingmasters.service.JourneyService;
 import equipe4.atlanticshippingmasters.service.PortService;
+import equipe4.atlanticshippingmasters.service.StepService;
 
 @Controller
 public class CalculatorController {
@@ -24,10 +28,25 @@ public class CalculatorController {
 	private PortService ps;
 	@Autowired 
 	private JourneyService js;
+	@Autowired 
+	private StepService ss;
 	
 	@GetMapping("/calculator")
-	public String getCalculator(Model model) {
+	public String getCalculator(Model model, Journey journey) {
+		// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRG!
+		Iterable<Port> portList = ps.getAllPorts();
+		
+		for (Port p : portList) {
+			p.setCoordinates(p.getCoordinates().replace("\"", ""));
+		}
+		// On tranforme en json la liste pour la passer à mon javascript
+		String portsJson = new Gson().toJson(ps.getAllPorts());
+		System.out.println(portsJson);
+		// On enlève tous les guillemets de nos coordonnéés pour 
+//		portsJson.replace("\"", "");
 		model.addAttribute("ports", ps.getAllPorts());
+		model.addAttribute("portsJson", portsJson);
+		model.addAttribute("journey", journey);
 		return "calculator";
 	}
 	
@@ -35,29 +54,38 @@ public class CalculatorController {
 	@PostMapping("/calculator")
 	public String postCalculator(Model model, @RequestParam Map<String,String> allParams) {
 		
-		int totalDistance = computeTotalDistance(allParams);
-		
 		Journey journey = new Journey();
-		journey.setTotalDistance(totalDistance);
 		js.insertJourney(journey);
-		
-		return getCalculator(model);
+		generateSteps(allParams, journey);
+
+		return getCalculator(model, journey);
 	}
 
-	private int computeTotalDistance(Map<String, String> allParams) {
+	private int generateSteps(Map<String, String> allParams, Journey journey) {
 		int result = 0;
-		for (int i = 1; i < allParams.size(); i ++) {
-//			System.out.println(allParams.get("step" + i));
-			// Je créé à chaque passage dans la boucle, un objet Tdc qui récupère les valeurs d'une étape
-			TravelDistanceCalculator tdc = new TravelDistanceCalculator(allParams.get("step" + (i)), allParams.get("step" + (i+1)));
-			System.out.println("Step" + i + " distance is " + tdc.getDistance() + "km");
-			result += tdc.getDistance();
+		for (int i = 1; i < allParams.size(); i++) {
+			// À chaque passage dans la boucle je récupère les ports de départ et d'arrivée d'une étape. Je créé un objet step via la StepForge. Enfin, j'insère cet objet dans la base de données avec l'id du journey fourni en paramètre.
+			Port departurePort = getRequestPort(allParams, i);
+			Port arrivalPort = getRequestPort(allParams, (i + 1));
+			
+			Step step = new StepForge(departurePort, arrivalPort)
+					.buildStep(journey.getIdJourney(), i);
+			
+			ss.insertStep(step);
 		}
-		TravelDistanceCalculator tdc = new TravelDistanceCalculator(allParams.get("step" + allParams.size()), allParams.get("step" + 1));
-		System.out.println("Last step distance is " + tdc.getDistance() + "km");
-		result += tdc.getDistance();
 		
-		System.out.println("TOTAL distance is " + result + "km");
+		Port firstPort = getRequestPort(allParams, 1);
+		Port lastPort = getRequestPort(allParams, allParams.size());
+		Step lastStep = new StepForge(lastPort, firstPort)
+				.buildStep(journey.getIdJourney(), allParams.size());
+		
+		ss.insertStep(lastStep);
+		
 		return result;
 	}
+	
+	private Port getRequestPort(Map<String, String> allParams, int id) {
+		return ps.getPort(Integer.valueOf(allParams.get("step" + id))).orElse(null);
+	}
+	
 }
