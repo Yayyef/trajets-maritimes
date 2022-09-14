@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <title>Historique des itiniéraires calculés</title>
-<link rel="stylesheet" type="text/css" th:href="@{/layouts/style.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/layouts/style.css}" />
 
 
 </head>
@@ -15,38 +15,43 @@
 
 	<section layout:fragment="custom-content">
 
-
-
-
 		<div class="container">
-		
-				<table class="table table-striped">
-				
-					<thead class="thead-dark">
-						<tr>
-	
-	
-	                        <th >ID</th>
-							<th >Parcours</th>
-							<th >Etapes</th>
-	
-						</tr>
-					</thead>
-					
-					<tbody>
-				
-					  <tr th:each="journey : ${journeys}">
-							<td th:text="${journey.idJourney}"></td>
-							<td th:text="${#lists.size(journey.steps)} + ' étapes'"></td>
-							
-						   <td> <a class="btn btn-primary btn-sm" th:href="'details/' + ${journey.idJourney}">Étapes</a> </td>
+			<h3 class="pb-2">Tous les itinéraires calculés</h3>
+			<table class="table table-striped">
 
-						</tr>
+				<thead class="thead-dark">
+					<tr>
+
+
+						<th>ID</th>
+						<th>Parcours</th>
+						<th>Etapes</th>
+
+					</tr>
+				</thead>
+
+				<tbody>
+
+					<tr th:each="journey : ${journeys}">
+						<td th:text="${journey.idJourney}"></td>
+						<td th:text="${#lists.size(journey.steps)} + ' étapes'"></td>
+
+						<td><a class="btn btn-primary btn-sm"
+							th:href="'details/' + ${journey.idJourney}">Étapes</a></td>
+
+					</tr>
 				</tbody>
-				</table>
-			</div>
-			
-			</section>
+			</table>
+		</div>
+
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+
+					<li class="page-item" th:each="pageNumber : ${pageNumbers}"><a class="page-link" th:href="@{/journeys(page=${pageNumber})}" th:text="${pageNumber}"></a></li>
+			</ul>
+		</nav>
+		
+	</section>
 
 </body>
 </html>
