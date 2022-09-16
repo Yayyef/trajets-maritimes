@@ -1,8 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>Calculateur</title>
+</head>
 <body>
-<h1>Something went wrong! </h1>
-<h2>Our Engineers are on it</h2>
-<a href="/">Go Home</a>
+
+
+	<section layout:fragment="custom-content"
+		class="my-5 justify-content-center">
+		<h1>Something went wrong!</h1>
+		<h2>Our Engineers are on it</h2>
+		<a href="/">Go Home</a>
+	</section>
+	
 </body>
 </html>

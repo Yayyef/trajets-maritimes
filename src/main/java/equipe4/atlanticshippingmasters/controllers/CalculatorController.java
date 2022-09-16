@@ -63,13 +63,14 @@ public class CalculatorController {
 
 	private int generateSteps(Map<String, String> allParams, Journey journey) {
 		int result = 0;
+		int idJourney = journey.getIdJourney();
 		for (int i = 1; i < allParams.size(); i++) {
 			// À chaque passage dans la boucle je récupère les ports de départ et d'arrivée d'une étape. Je créé un objet step via la StepForge. Enfin, j'insère cet objet dans la base de données avec l'id du journey fourni en paramètre.
 			Port departurePort = getRequestPort(allParams, i);
 			Port arrivalPort = getRequestPort(allParams, (i + 1));
 			
 			Step step = new StepForge(departurePort, arrivalPort)
-					.buildStep(journey.getIdJourney(), i);
+					.buildStep(idJourney, i);
 			
 			ss.insertStep(step);
 		}
@@ -77,12 +78,13 @@ public class CalculatorController {
 		Port firstPort = getRequestPort(allParams, 1);
 		Port lastPort = getRequestPort(allParams, allParams.size());
 		Step lastStep = new StepForge(lastPort, firstPort)
-				.buildStep(journey.getIdJourney(), allParams.size());
+				.buildStep(idJourney, allParams.size());
 		
 		ss.insertStep(lastStep);
 		
 		return result;
 	}
+	
 	
 	private Port getRequestPort(Map<String, String> allParams, int id) {
 		return ps.getPort(Integer.valueOf(allParams.get("step" + id))).orElse(null);
