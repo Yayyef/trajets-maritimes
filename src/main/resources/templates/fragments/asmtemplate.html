@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
 <header th:fragment="header">
 	<nav class="navbar navbar-expand-lg" id="mynav">
@@ -15,13 +16,18 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" th:href="@{/index}">Accueil</a></li>
-					<li class="nav-item"><a th:href="@{/calculator}" class="nav-link">Calculateur</a>
-					</li>
-					<li class="nav-item"><a th:href="@{/journeys}" class="nav-link">Historique des trajets</a>
-					</li>
-					<li class="nav-item"><a th:href="@{/about}" class="nav-link">À propos</a>
-					</li>
+					<li class="nav-item"><a th:href="@{/calculator}"
+						class="nav-link">Calculateur</a></li>
+					<li class="nav-item"><a th:href="@{/journeys}"
+						class="nav-link">Historique des trajets</a></li>
+					<li class="nav-item"><a th:href="@{/about}" class="nav-link">À
+							propos</a></li>
 				</ul>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<form name="logoutForm" th:action="@{/logout}" method="post">
+					<input type="submit" value="Sign Out" />
+				</form>
 			</div>
 		</div>
 	</nav>
@@ -29,7 +35,8 @@
 
 
 <footer th:fragment="footer"
-	class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" id="mynav">
+	class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+	id="mynav">
 	<p class="col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
 
 	<a href="/"
@@ -39,11 +46,13 @@
 	</a>
 
 	<ul class="nav col-md-4 justify-content-end">
-		<li class="nav-item"><a th:href="@{/index}" class="nav-link px-2 text-muted">Home</a></li>
+		<li class="nav-item"><a th:href="@{/index}"
+			class="nav-link px-2 text-muted">Home</a></li>
 		<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
 		<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
 		<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-		<li class="nav-item"><a th:href="@{/about}" class="nav-link px-2 text-muted">About</a></li>
+		<li class="nav-item"><a th:href="@{/about}"
+			class="nav-link px-2 text-muted">About</a></li>
 	</ul>
 </footer>
 </html>
