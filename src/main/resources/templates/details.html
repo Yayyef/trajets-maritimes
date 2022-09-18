@@ -1,72 +1,76 @@
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout}">
-    <head>
-        <meta charset="UTF-8">
-        
+<head>
+<meta charset="UTF-8">
+
 <title>Details de Parcours</title>
 
 </head>
 <body>
-       
-        
-        <section layout:fragment="custom-content">
-        
-        
-        
-        
-         <div class="container">
-         	<div class="row ">
-			    <div class="col-12 px-3 py-3" >
-			    	<div class="container px-4 text-center">
-					  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-					    <div class="col">
-					     <div class="p-3 border bg-light" >
-							<p th:text="${#lists.size(journey.steps)} + ' Steps'"></p>
-							<p th:text="' Distance totale parcourue '+ ${journey.totalDistance} + ' Km'"></p>
+
+
+	<section layout:fragment="custom-content">
+
+
+
+
+		<div class="container">
+			<div class="row ">
+				<div class="col-12 px-3 py-3">
+					<div class="container px-4 text-center">
+						<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+							<div class="col">
+								<div class="p-3 border bg-light">
+									<p th:text="${#lists.size(journey.steps)} + ' Steps'"></p>
+									<p
+										th:text="' Distance totale parcourue '+ ${totalDistance} + ' Km'"></p>
+								</div>
+							</div>
+
 						</div>
-					    </div>
-					    
-					  </div>
-					  <table class="table">
-                <thead  >
-                    <tr >
-                        <th >Arrival Port </th> 
-                       <th > Departure Port </th> 
-                        <th >Distance</th>
-                     
-                    </tr>
-                </thead>
-                <tbody>
-                     <tr th:each="detail:${journey.steps}">
-                     
-                     <td th:text="${detail.idPortDeparture.name}"></td> 
-	    					<td th:text="${detail.idPortArrival.name}"></td> 
-	    					<td th:text="${detail.distance}"></td> 
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Ordre étape</th>
+									<th>Port d'arrivée</th>
+									<th>Port de départ</th>
+									<th>Distance</th>
 
-                    </tr>
-                </tbody>
-            </table>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="step:${journey.steps}">
+									
+									<td th:text="${step.journeyOrder}"></td>
+									<td th:text="${step.idPortDeparture.name}"></td>
+									<td th:text="${step.idPortArrival.name}"></td>
+									<td th:text="${step.distance}"></td>
+
+								</tr>
+							</tbody>
+						</table>
 					</div>
-			   
-<!-- 			    			<tr>  -->
-<!-- 				    			<td th:text="${journey.idJourney}"></td> -->
-<!-- 				    			<td th:text="${journey.totalDistance}"> </td> -->
-<!-- 			    			</tr> -->
-<!-- 			    			<tr th:each="detail:${journey.steps}"> -->
-			    				
-<!-- 			    					<td th:text="${detail.idPortDeparture.name}"></td> -->
-<!-- 			    					<td th:text="${detail.idPortArrival.name}"></td> -->
-			    				
-<!-- 			    			</tr> -->
-			    		
+
+					<!-- 			    			<tr>  -->
+					<!-- 				    			<td th:text="${journey.idJourney}"></td> -->
+					<!-- 				    			<td th:text="${journey.totalDistance}"> </td> -->
+					<!-- 			    			</tr> -->
+					<!-- 			    			<tr th:each="detail:${journey.steps}"> -->
+
+					<!-- 			    					<td th:text="${detail.idPortDeparture.name}"></td> -->
+					<!-- 			    					<td th:text="${detail.idPortArrival.name}"></td> -->
+
+					<!-- 			    			</tr> -->
 
 
-                     
-        		</div>
-       		</div>
-        </div>
-       
+
+
+				</div>
+			</div>
+		</div>
+
 
 	</section>
 

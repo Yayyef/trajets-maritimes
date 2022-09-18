@@ -73,8 +73,7 @@
 							<button type="button" class="btn-close" data-bs-dismiss="toast"
 								aria-label="Close"></button>
 						</div>
-						<div class="toast-body"
-							th:text="'Le parcours ' + ${journey.idJourney} + ' a bien été enregistré!'"></div>
+						<div class="toast-body">Le parcours <a th:text="${journey.idJourney}" th:href="'details/' + ${journey.idJourney}"></a> a bien été enregistré!</div>
 					</div>
 
 				</div>

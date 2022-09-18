@@ -1,6 +1,9 @@
 package equipe4.atlanticshippingmasters.controllers;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import equipe4.atlanticshippingmasters.model.Step;
 import equipe4.atlanticshippingmasters.service.JourneyService;
 
 @Controller
@@ -52,7 +55,19 @@ public class JourneyController {
 		@GetMapping("/details/{id}")
 		public String JourneyView(@PathVariable Integer id ,Model model) {
 			model.addAttribute("journey",journeyService.getJourney(id).orElse(null));
-			 
+//			Set<Step> steps = journeyService.getJourney(id).orElse(null).getSteps();	
+//			TreeSet<Step> ts = new TreeSet<>();
+//			ts.addAll(steps);
+//			
+//			System.out.println(ts);
+//			for (Object s : ts) {
+//				Step step = (Step) s;
+//				System.out.println(step.getJourneyOrder());
+//			}
+			
+			int totalDistance = journeyService.getJourney(id).orElse(null).getSteps().stream().mapToInt(s -> s.getDistance()).sum();
+			
+			model.addAttribute("totalDistance", totalDistance);
 			return "details";
 		}
 		
