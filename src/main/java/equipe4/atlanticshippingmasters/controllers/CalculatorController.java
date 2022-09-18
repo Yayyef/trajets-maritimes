@@ -22,6 +22,7 @@ import equipe4.atlanticshippingmasters.model.Step;
 import equipe4.atlanticshippingmasters.service.JourneyService;
 import equipe4.atlanticshippingmasters.service.PortService;
 import equipe4.atlanticshippingmasters.service.StepService;
+import equipe4.atlanticshippingmasters.tools.ToolBox;
 
 @Controller
 public class CalculatorController {
@@ -32,21 +33,21 @@ public class CalculatorController {
 	private JourneyService js;
 	@Autowired
 	private StepService ss;
-
+	
+	private ToolBox tools = new ToolBox();
+	
 	@GetMapping("/calculator")
 	public String getCalculator(Model model, Journey journey) {
-		// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRG!
 		Iterable<Port> portList = ps.getAllPorts();
-
+		
 		for (Port p : portList) {
 			p.setCoordinates(p.getCoordinates().replace("\"", ""));
 		}
-		// On tranforme en json la liste pour la passer à mon javascript
+		// On tranforme en json la liste pour la passer au javascript
 		String portsJson = new Gson().toJson(ps.getAllPorts());
-//		System.out.println(portsJson);
-		// On enlève tous les guillemets de nos coordonnéés pour
-//		portsJson.replace("\"", "");
-		model.addAttribute("ports", ps.getAllPorts());
+
+		model.addAttribute("portsTools", tools.shortenPortList(portList));
+		model.addAttribute("ports", portList);
 		model.addAttribute("portsJson", portsJson);
 		model.addAttribute("journey", journey);
 		return "calculator";

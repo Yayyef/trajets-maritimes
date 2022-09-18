@@ -14,61 +14,83 @@ import lombok.Data;
 //@Data
 @Entity
 @Table(name = "step")
-public class Step {
-	
+public class Step implements Comparable<Step> {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idStep;
 	private int distance;
 	private int journeyOrder;
 	private int idJourneyFk;
-	
-	// Name c'est le nom de la colonne de CE modèle. ReferencedColumnname vise le modèle de l'autre table
+
+	// Name c'est le nom de la colonne de CE modèle. ReferencedColumnname vise le
+	// modèle de l'autre table
 	@ManyToOne
-    @JoinColumn(name="idPortDeparture", referencedColumnName = "idPort",  nullable=false)
+	@JoinColumn(name = "idPortDeparture", referencedColumnName = "idPort", nullable = false)
 	private Port idPortDeparture;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idPortArrival", referencedColumnName = "idPort",  nullable=false)
+	@JoinColumn(name = "idPortArrival", referencedColumnName = "idPort", nullable = false)
 	private Port idPortArrival;
 
-	
 	public int getIdStep() {
 		return idStep;
 	}
+
 	public void setIdStep(int idStep) {
 		this.idStep = idStep;
 	}
+
 	public int getDistance() {
 		return distance;
 	}
+
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
+
 	public int getJourneyOrder() {
 		return journeyOrder;
 	}
+
 	public void setJourneyOrder(int journeyOrder) {
 		this.journeyOrder = journeyOrder;
 	}
+
 	public int getIdJourneyFk() {
 		return idJourneyFk;
 	}
+
 	public void setIdJourneyFk(int idJourneyFk) {
 		this.idJourneyFk = idJourneyFk;
 	}
+
 	public Port getIdPortDeparture() {
 		return idPortDeparture;
 	}
+
 	public void setIdPortDeparture(Port idPortDeparture) {
 		this.idPortDeparture = idPortDeparture;
 	}
+
 	public Port getIdPortArrival() {
 		return idPortArrival;
 	}
+
 	public void setIdPortArrival(Port idPortArrival) {
 		this.idPortArrival = idPortArrival;
 	}
-}
 
+	// J'ai implémenté l'interface compareTo pour pouvoir ranger et afficher ma liste d'étapes dans le bonne ordre. En effet, on récuprère de la bdd un Iterable<Step> = c'est à dire une liste non ordonnée.
+	@Override
+	public int compareTo(Step s) {
+		// TODO Auto-generated method stub
+		Integer thisStep = getJourneyOrder();
+		Integer otherStep = s.getJourneyOrder();
+
+		if (thisStep == -1 || otherStep == null) {
+			return 0;
+		}
+		return thisStep.compareTo(otherStep);
+	}
+}

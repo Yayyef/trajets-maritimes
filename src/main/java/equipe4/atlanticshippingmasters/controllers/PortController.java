@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import equipe4.atlanticshippingmasters.model.Port;
 import equipe4.atlanticshippingmasters.service.PortService;
+import equipe4.atlanticshippingmasters.tools.ToolBox;
 
 @Controller
 public class PortController {
@@ -20,15 +21,16 @@ public class PortController {
 	@Autowired
 	private PortService ps;
 	
+	private ToolBox tools = new ToolBox();
+	
 	@GetMapping({"/index","/"})
 	public String index(Model model) {
+		Iterable<Port> portList = ps.getAllPorts();
 		
-		model.addAttribute("ports",shortenPortList());
+		model.addAttribute("portsTools", tools.shortenPortList(portList));
 		
 		return "index";
-
 	}
-
 
 	@GetMapping("/port/{id}")
 	public String portView(@PathVariable Integer id, Model model) {
@@ -43,22 +45,5 @@ public class PortController {
 
 		return "about";
 	}
-	public List<Port> shortenPortList(){
-		Iterable<Port> iterablePortlist=ps.getAllPorts();
-		//converted itrableportlist to a list
-		List<Port> portList= StreamSupport.stream(iterablePortlist.spliterator(), false).collect(Collectors.toList());
-		
-		List<Port> randomList = new ArrayList<>();
-		Random random = new Random();
-		for (int i = 0; i < 3; i++) {
-			int randomIndex = random.nextInt(portList.size());
-			Port randomPort= portList.get(randomIndex);
-			randomList.add(randomPort);
-			portList.remove(randomIndex);
-		}
-		
-		return randomList;
-		
-	}
-	
+
 }

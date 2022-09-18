@@ -3,7 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
 <header th:fragment="header" id="mynav">
-	<div class="container">
+	<div class="container col-lg-9">
 
 		<nav class="navbar navbar-expand-lg p-3">
 			<div class="container-fluid d-flex justify-content-between">
@@ -30,12 +30,12 @@
 								class="nav-link">Calculateur</a></li>
 							<li class="nav-item"><a th:href="@{/journeys(page=1)}"
 								class="nav-link">Historique des trajets</a></li>
-							<li ><a th:href="@{/about}" class="nav-link">À
-									propos</a></li>
+							<li><a th:href="@{/about}" class="nav-link">À propos</a></li>
 							<li class="nav-item">
 								<div sec:authorize="isAuthenticated()">
 									<form name="logoutForm" th:action="@{/logout}" method="post">
-										<button class="btn btn-primary bg-primary" type="submit" value="Sign Out" >Déconnexion</button>
+										<button class="btn btn-primary bg-primary" type="submit"
+											value="Sign Out">Déconnexion</button>
 									</form>
 								</div>
 							</li>
@@ -47,8 +47,33 @@
 	</div>
 </header>
 
+<div th:fragment="portCards" class="container my-3">
+	<div class="d-flex justify-content-center">
+		<hr class="px-5 mt-5 col-6">
+	</div>
+	<div class="row p-3 m-2">
+		<div class="col-lg-4" th:each="port : ${portsTools}">
+			<div class="card">
+				<img class="card-img-top"
+					src="https://jaimemonpatrimoine.twic.pics/images/FO_Gallery/port-du-havre_1593787399.jpg?twic=v1/resize=330"
+					alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title" th:text="${port.name}"></h5>
 
-<footer th:fragment="footer"
+					<p class="card-text">Some quick example text to build on the
+						card title and make up the bulk of the card's content.</p>
+
+					<a href="#" class="btn btn-primary">Go somewhere</a>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+</div>
+
+<footer th:fragment="footer col-lg-9"
 	class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top"
 	id="mynav">
 	<div class="container d-flex justify-content-between">

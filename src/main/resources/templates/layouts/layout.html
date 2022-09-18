@@ -20,8 +20,9 @@
 
 	<th:block th:insert="~{fragments/asmtemplate :: header}"></th:block>
 
-	<div class="container my-5 col-lg-9">
+	<div class="content container my-5 col-lg-9 py-5">
 		<section layout:fragment="custom-content"></section>
+		<th:block th:insert="~{fragments/asmtemplate :: portCards}"></th:block>
 	</div>
 
 	<th:block th:insert="~{fragments/asmtemplate :: footer}">

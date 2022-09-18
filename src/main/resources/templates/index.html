@@ -1,68 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout}">
-	
+
 <head>
 <title>Welcome</title>
-<link rel="stylesheet" type="text/css" th:href="@{/layouts/style.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/layouts/style.css}" />
 </head>
 <body>
 
 	<section layout:fragment="custom-content">
-		
-		
-	<div class="container-fluid my-3" >
-		
-		<div class="text-end p-5">
-		<h1>Atlantic Shipping Masters</h1>
-		<article>
-			<i>L'expert du voyage transatlantique à votre service.</i>
-		</article>
-		
-		</div>
-		
-		 <div class="row bg-light">
-			    <div class="col-lg-6 p-5">
-			    <h3>Planifiez un voyage de rêve</h3>
-			      <p >Containers are the most basic layout element in Bootstrap and are required when
-			      using our default grid system. Containers are used to contain, pad, and (sometimes) 
-			      center the content within them. While containers can be nested, most layouts do not require 
-			      a nested container. </p>
-					 <a href="#" class="btn btn-outline-secondary ">Calculer l'itinéraire</a>
-			    </div>
-			    
-			    <div class="col-lg-6 px-3 py-3">
-			    
-			      	<img class="rounded float-end-img-fluid" id="indeximg" th:src="@{img/atlantiquemaritime.jpg}"/>
-			    </div>
-		  </div>
-		  
-		
-		<div class="container my-3">
-		
-			<div class="row p-3 m-2" >
-				<div class="col-lg-4" th:each="port : ${ports}">
-					<div class="card">
-				    	<img class="card-img-top" src="https://jaimemonpatrimoine.twic.pics/images/FO_Gallery/port-du-havre_1593787399.jpg?twic=v1/resize=330" alt="Card image cap">
-					    <div class="card-body">
-					      <h5 class="card-title" th:text="${port.name}"></h5>
-					      
-					     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					      
-					      <a href="#" class="btn btn-primary">Go somewhere</a>
-					    </div>
-				  	</div>
-				
-				</div>
-			  
+
+
+		<div class="container-fluid my-3">
+
+			<div class="text-end p-5">
+				<h1>Atlantic Shipping Masters</h1>
+				<article>
+					<i>L'expert du voyage transatlantique à votre service.</i>
+				</article>
 
 			</div>
+
+			<div class="row bg-light">
+				<div class="col-lg-6 p-5">
+					<h3>Planifiez un voyage de rêve</h3>
+					<p>Containers are the most basic layout element in Bootstrap
+						and are required when using our default grid system. Containers
+						are used to contain, pad, and (sometimes) center the content
+						within them. While containers can be nested, most layouts do not
+						require a nested container.</p>
+					<a th:href="@{/calculator}" class="btn btn-outline-secondary ">Calculer
+						l'itinéraire</a>
+				</div>
+
+				<div class="col-lg-6 px-3 py-3">
+
+					<img class="rounded float-end-img-fluid" id="indeximg"
+						th:src="@{img/atlantiquemaritime.jpg}" />
+				</div>
+			</div>
+
 		</div>
-	</div>
-        
-    
+
 	</section>
 
-	
+
 </body>
 </html>

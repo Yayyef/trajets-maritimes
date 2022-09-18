@@ -1,5 +1,11 @@
+body {
+	background-image: url("../img/cruise-ship.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
 footer {
-	min-height: 300px;
+	min-height: 310px;
 }
 
 #mynav{
@@ -21,3 +27,7 @@ footer {
 	font-weight: bold;
 }
 
+.content {
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 2px;
+}
