@@ -20,7 +20,7 @@
 					<tr>
 						<th>ID</th>
 						<th>Port d'attache</th>
-						<th>Étape.s</th>
+						<th>Nombre d'Étapes</th>
 						<th>Parcours</th>
 					</tr>
 				</thead>
@@ -30,7 +30,7 @@
 						<td th:text="${journey.getHomePort().name}"></td>
 						<td th:text="${#lists.size(journey.steps)}"></td>
 						<td><a class="btn btn-primary btn-sm"
-							th:href="'details/' + ${journey.idJourney}">Étapes</a></td>
+							th:href="'details/' + ${journey.idJourney}">Détails</a></td>
 					</tr>
 				</tbody>
 			</table>

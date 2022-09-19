@@ -1,9 +1,10 @@
 package equipe4.atlanticshippingmasters.controllers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import equipe4.atlanticshippingmasters.computation.StepForge;
 import equipe4.atlanticshippingmasters.model.Journey;
@@ -60,9 +63,15 @@ public class CalculatorController {
 
 		// Création/insertion du Journey après le calcul des étapes. Dès l'insertion du son id est accessible pour les Steps dans la méthode generateSteps 
 		Journey journey = new Journey();
-		js.insertJourney(journey);
-		generateSteps(allParams, journey);
+//		js.insertJourney(journey);
+//		generateSteps(allParams, journey);
 
+		List<Integer> paramValues = filterCsrfToken(allParams);
+		Set<Integer> pvSet = new HashSet<>(paramValues);
+		
+//		Set<Set<Integer>> set = Sets.combinations(pvSet, pvSet.size());
+//		Sets.
+		
 		return getCalculator(model, journey);
 	}
 

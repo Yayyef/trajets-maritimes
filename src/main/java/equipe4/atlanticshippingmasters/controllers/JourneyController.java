@@ -69,7 +69,8 @@ public class JourneyController {
 		model.addAttribute("totalDistance", totalDistance);
 		return "details";
 	}
-
+	
+	// METHODE POUR CALCULER LE NOMBRE DE PAGES DE JOURNEYS (nécéssaire pour la pagination)
 	private List<Integer> createPageList(int itemsPerPage) {
 		// On convertit notre itérable issu de la bdd en Liste pour obtenir le nombre
 		// d'éléments qu'elle contient avec size(). ON récupère la valeur en double pour

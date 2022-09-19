@@ -25,15 +25,16 @@ public class Journey {
 	@OneToMany (mappedBy = "idJourneyFk") 
 	private Set<Step> steps;
 	
+	// Détermination du port d'attache
 	public Port getHomePort() {
-//		Journey journey = pr.findById(id).orElse(null);
 		Set<Step> steps = this.getSteps();
-//		Port homePort = this.getSteps().stream().filter(step -> step.getJourneyOrder() == 1).findFirst().orElse(null).getIdPortDeparture();
+		// Si la liste d'étapes est vide on a une erreur au niveau de thymeleaf. On donne donc une valeur par défaut
 		if (this.getSteps().isEmpty()) {
 			Port defaultValue = new Port();
 			defaultValue.setName("Non défini");
 			return defaultValue;
 		} else {
+//			On cherche le port de départ de la première étape (laquelle est trouvée grâce au journeyOrder)
 			return steps.stream().filter(step -> step.getJourneyOrder() == 1).findFirst().orElse(null).getIdPortDeparture();
 		}
 	}
