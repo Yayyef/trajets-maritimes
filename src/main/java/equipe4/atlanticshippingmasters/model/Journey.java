@@ -25,4 +25,17 @@ public class Journey {
 	@OneToMany (mappedBy = "idJourneyFk") 
 	private Set<Step> steps;
 	
+	public Port getHomePort() {
+//		Journey journey = pr.findById(id).orElse(null);
+		Set<Step> steps = this.getSteps();
+//		Port homePort = this.getSteps().stream().filter(step -> step.getJourneyOrder() == 1).findFirst().orElse(null).getIdPortDeparture();
+		if (this.getSteps().isEmpty()) {
+			Port defaultValue = new Port();
+			defaultValue.setName("Non défini");
+			return defaultValue;
+		} else {
+			return steps.stream().filter(step -> step.getJourneyOrder() == 1).findFirst().orElse(null).getIdPortDeparture();
+		}
+	}
+	
 }

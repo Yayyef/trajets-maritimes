@@ -1,6 +1,5 @@
-const addStepButton = document.querySelector("#addStepButton");
 
-// On créé un 
+// On créé un module pour encapsuler mes méthodes et ne rendre disponible que le nécéssaire dans le global scope
 const stepModule = (() => {
 
 	// Je récupère ma chaîne de caractère envoyé par le controlleur et la transforme en JSON
@@ -14,7 +13,7 @@ const stepModule = (() => {
 	// On génère le html
 	const generateOptions = () => {
 		let portOptionsHtml = "";
-		// On fait une boucle pour créér les 
+		// On fait une boucle pour créér les options
 		for (i = 0; i < portList.length; i++) {
 			portOptionsHtml += `<option value="${portList[i].idPort}"
 						name="step${portListIterator}">${portList[i].name}</option>`;
@@ -47,13 +46,14 @@ const stepModule = (() => {
 			pointer.insertAdjacentHTML("beforebegin", generateSelect());
 			portListIterator++;
 		}
-
 	}
 	
-	// On renvoie un seulement la fonction insert
+	// On renvoie seulement la fonction insert
 	return {
 		insert
 	};
 })();
 
+// On sélectionne notre boutton dans le html et on lui ajoute l'événement insert
+const addStepButton = document.querySelector("#addStepButton");
 addStepButton.addEventListener("click", stepModule.insert);

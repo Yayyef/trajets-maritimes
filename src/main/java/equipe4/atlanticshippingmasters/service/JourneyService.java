@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import equipe4.atlanticshippingmasters.model.Journey;
 import equipe4.atlanticshippingmasters.model.JourneyRepository;
+import equipe4.atlanticshippingmasters.model.Port;
 
 @Service
 public class JourneyService {
@@ -30,13 +31,17 @@ public class JourneyService {
 	}
 
 	// Méthode pour récupérer une page de journeys
-	public List<Journey> getPage(int pageNumber, int itemsPerPage) {
+	public List<Journey> getJourneyPage(int pageNumber, int itemsPerPage) {
 		// On converti l'itérable récupéré en liste pour avoir accès à get()
 		List<Journey> allJourneys = StreamSupport.stream(pr.findAll().spliterator(), false).collect(Collectors.toList());
 		List<Journey> pageList = new ArrayList<>();
 		
 		for (int i = (pageNumber*itemsPerPage) - itemsPerPage; i < pageNumber*itemsPerPage; i++) {
-			if (i >= allJourneys.size()) break;
+			// Condition de sortie de la boucle pour éviter un bug sur la dernière page = index OutOfBound exception.
+			if (i >= allJourneys.size()) {
+				break;
+			}
+			
 			pageList.add(allJourneys.get(i));
 		}
 				

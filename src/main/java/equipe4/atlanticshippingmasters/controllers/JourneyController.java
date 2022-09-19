@@ -36,36 +36,32 @@ public class JourneyController {
 	private ToolBox tools = new ToolBox();
 
 	@GetMapping("/journeys")
-	public String GetView(Model model, @RequestParam("page") int page) {
+	public String getView(Model model, @RequestParam("page") int page) {
 		Iterable<Port> portList = ps.getAllPorts();
 
 		int itemsPerPage = 10;
-
-		// On convertit notre itérable issu de la bdd en Liste pour obtenir le nombre
-		// d'éléments qu'elle contient avec size(). ON récupère la valeur en double pour
-		// que mon calcul du nombre de page fonctionne.
-		double size = StreamSupport.stream(journeyService.getAllJourneys().spliterator(), false)
-				.collect(Collectors.toList()).size();
 		
 		// Je passe ma liste de numéro de page à la vue
 		model.addAttribute("pageNumbers", createPageList(itemsPerPage));
 		model.addAttribute("portsTools", tools.shortenPortList(portList));
-		model.addAttribute("journeys", journeyService.getPage(page, itemsPerPage));
+		model.addAttribute("journeys", journeyService.getJourneyPage(page, itemsPerPage));
 
 		return "journeys";
-
 	}
 
 	@GetMapping("/details/{id}")
-	public String JourneyView(@PathVariable Integer id, Model model) {
+	public String journeyView(@PathVariable Integer id, Model model) {
+		// On récupère une liste sans ordre
 		Iterable<Port> portList = ps.getAllPorts();
 
 		Journey journey = journeyService.getJourney(id).orElse(null);
+		// Conversion en liste pour pouvoir utiliser sort()
 		List<Step> steps = StreamSupport.stream(journey.getSteps().spliterator(), false).collect(Collectors.toList());
+		// On range nos étapes grâce avec sort
 		Collections.sort(steps);
 
-		int totalDistance = journeyService.getJourney(id).orElse(null).getSteps().stream()
-				.mapToInt(s -> s.getDistance()).sum();
+		// Calcule de la distance totale grace à stream
+		int totalDistance = journey.getSteps().stream().mapToInt(s -> s.getDistance()).sum();
 
 		model.addAttribute("portsTools", tools.shortenPortList(portList));
 		model.addAttribute("journey", journey);

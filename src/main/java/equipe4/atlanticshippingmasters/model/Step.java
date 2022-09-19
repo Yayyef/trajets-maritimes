@@ -84,7 +84,6 @@ public class Step implements Comparable<Step> {
 	// J'ai implémenté l'interface compareTo pour pouvoir ranger et afficher ma liste d'étapes dans le bonne ordre. En effet, on récuprère de la bdd un Iterable<Step> = c'est à dire une liste non ordonnée.
 	@Override
 	public int compareTo(Step s) {
-		// TODO Auto-generated method stub
 		Integer thisStep = getJourneyOrder();
 		Integer otherStep = s.getJourneyOrder();
 

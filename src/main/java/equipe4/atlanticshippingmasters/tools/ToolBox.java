@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import equipe4.atlanticshippingmasters.model.Journey;
 import equipe4.atlanticshippingmasters.model.Port;
 
 public class ToolBox {
@@ -25,4 +26,11 @@ public class ToolBox {
 		
 		return randomList;
 	}
+	
+//	public Port getHomePort(final Journey journey) {
+////		Journey journey = pr.findById(id).orElse(null);
+//		Port homePort = journey.getSteps().stream().filter(step -> step.getJourneyOrder() == 1).findFirst().orElse(null).getIdPortDeparture();
+//		
+//		return homePort;
+//	}
 }

@@ -19,18 +19,18 @@
 				<thead class="thead-dark">
 					<tr>
 						<th>ID</th>
+						<th>Port d'attache</th>
+						<th>Étape.s</th>
 						<th>Parcours</th>
-						<th>Etapes</th>
 					</tr>
 				</thead>
 				<tbody>
-
 					<tr th:each="journey : ${journeys}">
 						<td th:text="${journey.idJourney}"></td>
-						<td th:text="${#lists.size(journey.steps)} + ' étapes'"></td>
+						<td th:text="${journey.getHomePort().name}"></td>
+						<td th:text="${#lists.size(journey.steps)}"></td>
 						<td><a class="btn btn-primary btn-sm"
 							th:href="'details/' + ${journey.idJourney}">Étapes</a></td>
-
 					</tr>
 				</tbody>
 			</table>
@@ -38,7 +38,6 @@
 
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
-
 					<li class="page-item" th:each="pageNumber : ${pageNumbers}"><a class="page-link" th:href="@{/journeys(page=${pageNumber})}" th:text="${pageNumber}"></a></li>
 			</ul>
 		</nav>

@@ -14,6 +14,9 @@
 	<section layout:fragment="custom-content">
 
 		<div class="container">
+			<div>
+				<a th:href="@{/journeys(page=1)}" class="link-primary">Retour aux itinéraires calculés</a>
+			</div>
 			<div class="row justify-content-between py-5">
 
 				<div class="col-lg-6">
@@ -21,6 +24,7 @@
 				</div>
 				<div class="col-lg-4">
 					<div class="p-3 border bg-light">
+						<p th:text="'Port d\'Attache: ' + ${journey.getHomePort().name}"></p>
 						<p th:text="${#lists.size(journey.steps)} + ' Étape.s'"></p>
 						<p
 							th:text="' Distance totale parcourue: '+ ${totalDistance} + ' Km'"></p>

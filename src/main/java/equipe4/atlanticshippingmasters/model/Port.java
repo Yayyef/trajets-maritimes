@@ -17,7 +17,7 @@ public class Port {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idPort;
 	
-	private String name;
+	private String name = "Non défini";
 	private String coordinates;
 	
 }
