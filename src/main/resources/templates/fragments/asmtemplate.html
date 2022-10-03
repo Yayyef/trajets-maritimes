@@ -25,12 +25,12 @@
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 							<li class="nav-item"><a class="nav-link active"
-								aria-current="page" th:href="@{/index}">Accueil</a></li>
+								aria-current="page" th:href="@{/public/index}">Accueil</a></li>
 							<li class="nav-item"><a th:href="@{/calculator}"
 								class="nav-link">Calculateur</a></li>
 							<li class="nav-item"><a th:href="@{/journeys(page=1)}"
 								class="nav-link">Historique des trajets</a></li>
-							<li><a th:href="@{/about}" class="nav-link">À propos</a></li>
+							<li><a th:href="@{/public/about}" class="nav-link">À propos</a></li>
 							<li class="nav-item">
 								<div sec:authorize="isAuthenticated()">
 									<form name="logoutForm" th:action="@{/logout}" method="post">
@@ -84,13 +84,13 @@
 			<ul class="list-group">
 				<li class="nav-item"><a class="navbar-brand"
 					th:href="@{/index}">Atlantic Shipping Masters</a></li>
-				<li class="nav-item"><a th:href="@{/index}"
+				<li class="nav-item"><a th:href="@{/public/index}"
 					class="nav-link text-muted">Page d'acceuil</a></li>
 				<li class="nav-item"><a th:href="@{/calculator}"
 					class="nav-link text-muted">Features</a></li>
 				<li class="nav-item"><a th:href="@{/journeys(page=1)}"
 					class="nav-link text-muted">Historique des trajets</a></li>
-				<li class="nav-item"><a th:href="@{/about}"
+				<li class="nav-item"><a th:href="@{/public/about}"
 					class="nav-link text-muted">À Propos</a></li>
 			</ul>
 		</div>

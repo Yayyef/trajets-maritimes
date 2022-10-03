@@ -24,22 +24,22 @@
 				<fieldset class="py-5 px-3 border border-primary">
 
 					<div>
-						<label for="step1" class="form-label">Choisissez un port
+						<label for="port1" class="form-label">Choisissez un port
 							d'attache</label>
 						<!-- 					Je fais un foreach pour afficher tous les ports en options -->
-						<select id="step1" class="form-select"
-							aria-label="Sélection du port d'attache" th:name="step1">
+						<select id="port1" class="form-select"
+							aria-label="Sélection du port d'attache" th:name="port1">
 							<option th:each="port : ${ports}" th:value="${port.idPort}"
-								th:text="${port.name}" th:name="step1" />
+								th:text="${port.name}" th:name="port1" />
 						</select>
 					</div>
 
 					<div>
-						<label for="step2" class="form-label">Ajoutez une étape à
-							votre itinéraire</label> <select id="step2" class="form-select"
-							aria-label="Sélection de l'étape" th:name="step2">
+						<label for="port2" class="form-label">Ajoutez une étape à
+							votre itinéraire</label> <select id="port2" class="form-select"
+							aria-label="Sélection de l'étape" th:name="port2">
 							<option th:each="port : ${ports}" th:value="${port.idPort}"
-								th:text="${port.name}" th:name="step2" />
+								th:text="${port.name}" th:name="port2" />
 						</select>
 					</div>
 					<!-- 					Le pointer me permet d'insérér les nouveaux <select> au bon endroit avec js -->

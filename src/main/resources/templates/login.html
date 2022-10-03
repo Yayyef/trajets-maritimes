@@ -1,36 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-      <meta charset="utf-8">
-      <title>Log in with your account</title>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-      <link href="/css/main.css" rel="stylesheet">
-  </head>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
 
-  <body>
-    <div class="container">
-        <form class="form-signin" method="POST" th:action="@{/login}">
-            <h2 class="form-heading">Log In</h2>
+<head>
+<title>Connectez-vous</title>
+<link rel="stylesheet" type="text/css" th:href="@{/layouts/style.css}" />
+</head>
 
-            <div class="form-group">
-                <span th:text="${message}"></span>
-                <input name="username" type="text" class="form-control" placeholder="username" autofocus="true" />
+<body>
 
-                <input name="password" type="password" class="form-control" placeholder="Password" />
-                <span class="has-error" th:text="${error}"></span>
+	<section layout:fragment="custom-content">
+		<div class="container col-lg-6">
+			<form class="form-signin " method="POST" th:action="@{/login}">
+				<h3 class="form-heading">Bienvenue! Avez-vous déjà un compte?</h3>
 
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<div class="form-group">
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-            </div>
-                <h4 class="text-center"><a th:href="@{/signup}">Create an account</a></h4>
-        </form>
-    </div>
+					<div class="py-2">
+						<label class="mb-2" for="username">Nom Utilisateur</label> <input
+							name="username" type="text" class="form-control"
+							placeholder="username" autofocus="true" /> <span
+							th:text="${message}"></span>
+					</div>
+					<div class="py-2">
+						<label class="mb-2" for="password">Mot de passe</label> <input name="password"
+							type="password" class="form-control" placeholder="Password" /> <span
+							class="has-error" th:text="${error}"></span>
+					</div>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="/js/main.js"></script>
-  </body>
+
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+
+					<div class="d-flex justify-content-between m-3">
+						<div>
+							<button class="btn btn-primary btn-block"
+								type="submit">Connexion</button>
+						</div>
+						<div>
+							<a class="text-center" th:href="@{/signup}">Créez un compte</a>
+						</div>
+
+					</div>
+
+				</div>
+				<h4 class="text-center"></h4>
+			</form>
+		</div>
+
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"></script>
+		<script src="/js/main.js"></script>
+	</section>
+</body>
 </html>

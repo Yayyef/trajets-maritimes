@@ -16,18 +16,18 @@ const stepModule = (() => {
 		// On fait une boucle pour créér les options
 		for (i = 0; i < portList.length; i++) {
 			portOptionsHtml += `<option value="${portList[i].idPort}"
-						name="step${portListIterator}">${portList[i].name}</option>`;
+						name="port${portListIterator}">${portList[i].name}</option>`;
 		}
 		return portOptionsHtml;
 	}
 	const generateSelect = () => {
 		return `<div>
 				
-				<label for="step${portListIterator}" class="form-label">Ajoutez une étape à votre itinéraire</label> 
+				<label for="port${portListIterator}" class="form-label">Ajoutez une étape à votre itinéraire</label> 
 				<div  class="d-flex">
 				
 				<div>
-					<select id="step${portListIterator}" class="form-select" aria-label="Sélection de l'étape" name="step${portListIterator}">
+					<select id="port${portListIterator}" class="form-select" aria-label="Sélection de l'étape" name="port${portListIterator}">
 				${generateOptions()}
 				</select> 
 				</div>
@@ -53,7 +53,8 @@ const stepModule = (() => {
 		insert
 	};
 })();
-
+window.addEventListener("load", stepModule.insert);
+window.addEventListener("load", stepModule.insert);
 // On sélectionne notre boutton dans le html et on lui ajoute l'événement insert
 const addStepButton = document.querySelector("#addStepButton");
 addStepButton.addEventListener("click", stepModule.insert);

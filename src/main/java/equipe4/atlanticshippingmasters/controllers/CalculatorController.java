@@ -47,7 +47,7 @@ public class CalculatorController {
 			p.setCoordinates(p.getCoordinates().replace("\"", ""));
 		}
 		// On tranforme en json la liste pour la passer au javascript
-		String portsJson = new Gson().toJson(ps.getAllPorts());
+		String portsJson = new Gson().toJson(portList);
 
 		model.addAttribute("portsTools", tools.shortenPortList(portList));
 		model.addAttribute("ports", portList);
@@ -63,14 +63,12 @@ public class CalculatorController {
 
 		// Création/insertion du Journey après le calcul des étapes. Dès l'insertion du son id est accessible pour les Steps dans la méthode generateSteps 
 		Journey journey = new Journey();
-//		js.insertJourney(journey);
-//		generateSteps(allParams, journey);
+		js.insertJourney(journey);
+		generateSteps(allParams, journey);
 
 		List<Integer> paramValues = filterCsrfToken(allParams);
 		Set<Integer> pvSet = new HashSet<>(paramValues);
 		
-//		Set<Set<Integer>> set = Sets.combinations(pvSet, pvSet.size());
-//		Sets.
 		
 		return getCalculator(model, journey);
 	}
@@ -111,7 +109,7 @@ public class CalculatorController {
 	private List<Integer> filterCsrfToken(Map<String, String> allParams) {
 		List<Integer> paramValues = new ArrayList<>();
 		allParams.forEach((k,v) -> {
-			if (k.contains("step")) {
+			if (k.contains("port")) {
 				paramValues.add(Integer.valueOf(v));
 			}
 		});

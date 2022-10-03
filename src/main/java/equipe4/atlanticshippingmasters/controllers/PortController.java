@@ -23,7 +23,7 @@ public class PortController {
 	
 	private ToolBox tools = new ToolBox();
 	
-	@GetMapping({"/index","/"})
+	@GetMapping({"/public/index","/"})
 	public String index(Model model) {
 		Iterable<Port> portList = ps.getAllPorts();
 		
@@ -40,7 +40,7 @@ public class PortController {
 		return "ports";
 	}
 	
-	@GetMapping("/about")
+	@GetMapping("public/about")
 	public String aboutView() {
 
 		return "about";
