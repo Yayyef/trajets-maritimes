@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,11 +58,13 @@ public class CalculatorController {
 	// Map<String, String> est un dictionnaire de clés et de valeurs. Les clés
 	// correspondent à th:name dans notre vue, les valeurs correspondent à th:value
 	@PostMapping("/calculator")
+	@Transactional
 	public String postCalculator(Model model, @RequestParam Map<String, String> allParams) {
 
 		// Création/insertion du Journey après le calcul des étapes. Dès l'insertion du
 		// son id est accessible pour les Steps dans la méthode generateSteps
 		Journey journey = new Journey();
+		
 		js.insertJourney(journey);
 		generateSteps(allParams, journey);
 
