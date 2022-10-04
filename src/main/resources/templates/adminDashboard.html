@@ -1,21 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
 
 <head>
-    <meta charset="utf-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="/css/main.css" rel="stylesheet">
+<meta charset="utf-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link href="/css/main.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" th:href="@{/icofont.min.css}">
+
 </head>
 
 <body>
-    <header th:replace="fragments/asmtemplate.html :: header"></header>
-    <div class="container">
-    <h2>Dashboard</h2>
-    </div>
-    <footer th:replace="fragments/asmtemplate.html :: footer"></footer>
+	<header th:replace="fragments/asmtemplate.html :: header"></header>
+	<section layout:fragment="custom-content"
+		class="d-flex justify-content-center">
+		<div class="container">
+			<!-- start of navigation -->
+
+			<div class="container-fluid">
+				<a class="btn btn-info" href="#">Ajouter Port</a>
+				<table class="table table-striped">
+					<thead>
+						<tr class="table-active">
+			
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-active" th:each="port : ${portList}">
+							<td th:text="${port.idPort}">Id Port</td>
+							<td th:text="${port.name}">Port name</td>
+							<td th:text="${port.coordinates}">Coordinates</td>
+							
+							<td>
+								<a class="btn btn-info" th:href="'port/'+${port.idPort}">Modifier
+							</a>
+
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- end of navigation -->
+		
+	</section>
+
+	<footer th:replace="fragments/asmtemplate.html :: footer"></footer>
 </body>
 
 </html>

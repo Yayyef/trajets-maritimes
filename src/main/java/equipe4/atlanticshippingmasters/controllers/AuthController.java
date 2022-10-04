@@ -30,13 +30,7 @@ public class AuthController {
         return "login";
     }
 
-    @GetMapping("/signup")
-    public String signup(Model model) {
 
-        model.addAttribute("userForm", new User());
-
-        return "signup";
-    }
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute("userForm") User userForm) {

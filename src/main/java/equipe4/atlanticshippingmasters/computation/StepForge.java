@@ -65,7 +65,7 @@ public class StepForge {
 
 		return (int) distance / 1000;
 	}
-	
+	//it added the steps with order in my bdd (journey table with order)
 	public Step buildStep(int journeyId, int order) {
 		Step step = new Step();
 		step.setJourneyOrder(order);

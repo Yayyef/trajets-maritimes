@@ -45,7 +45,7 @@ public class CalculatorController {
 		}
 		// On tranforme en json la liste pour la passer au javascript
 		String portsJson = new Gson().toJson(ps.getAllPorts());
-
+		System.out.println(portsJson);
 		model.addAttribute("portsTools", tools.shortenPortList(portList));
 		model.addAttribute("ports", portList);
 		model.addAttribute("portsJson", portsJson);
@@ -70,6 +70,7 @@ public class CalculatorController {
 	private int generateSteps(Map<String, String> allParams, Journey journey) {
 		int result = 0;
 		int idJourney = journey.getIdJourney();
+		//removing csrf token to get the parameters (value)
 		
 		List<Integer> paramValues = filterCsrfToken(allParams);
 
@@ -77,7 +78,7 @@ public class CalculatorController {
 			// À chaque passage dans la boucle je récupère les ports de départ et d'arrivée
 			// d'une étape. Je créé un objet step via la StepForge. Enfin, j'insère cet
 			// objet dans la base de données avec l'id du journey fourni en paramètre.
-			Port departurePort = getRequestPort(paramValues.get(i));
+			Port departurePort = getRequestPort(paramValues.get(i)); // for retreiving the parameters of port which called step in form
 			Port arrivalPort = getRequestPort(paramValues.get(i + 1));
 
 			Step step = new StepForge(departurePort, arrivalPort).buildStep(idJourney, i + 1);
@@ -94,11 +95,12 @@ public class CalculatorController {
 		return result;
 	}
 
+//this method takes the port from database by id and convert it to integer
 	private Port getRequestPort(int id) {
 		return ps.getPort(Integer.valueOf(id)).orElse(null);
 	}
 	
-	// FILTRE POUR RETIRER LE TOKEN CSRF (Cross Site Request Forgery) Ajouté par défaut par Spring Security
+	// FILTRE POUR RETIRER LE TOKEN CSRF (Cross Site Request Forgery) Ajouté par défaut par Spring Security(its for removing csrf token from request )
 	private List<Integer> filterCsrfToken(Map<String, String> allParams) {
 		List<Integer> paramValues = new ArrayList<>();
 		allParams.forEach((k,v) -> {
