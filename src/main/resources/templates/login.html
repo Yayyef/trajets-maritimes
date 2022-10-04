@@ -20,7 +20,7 @@
 					<div class="py-2">
 						<label class="mb-2" for="username">Nom Utilisateur</label> <input
 							name="username" type="text" class="form-control"
-							placeholder="username" autofocus="true" /> <span
+							placeholder="username" autofocus/> <span
 							th:text="${message}"></span>
 					</div>
 					<div class="py-2">
@@ -28,11 +28,6 @@
 							type="password" class="form-control" placeholder="Password" /> <span
 							class="has-error" th:text="${error}"></span>
 					</div>
-
-
-
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
 
 					<div class="d-flex justify-content-between m-3">
 						<div>

@@ -53,8 +53,7 @@ const stepModule = (() => {
 		insert
 	};
 })();
-window.addEventListener("load", stepModule.insert);
-window.addEventListener("load", stepModule.insert);
+
 // On sélectionne notre boutton dans le html et on lui ajoute l'événement insert
 const addStepButton = document.querySelector("#addStepButton");
 addStepButton.addEventListener("click", stepModule.insert);
