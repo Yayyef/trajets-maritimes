@@ -45,5 +45,14 @@ public class PortController {
 
 		return "about";
 	}
+	
+//	@GetMapping("/port/{id}")
+//	public String portView(@PathVariable Integer id, Model model) {
+//		
+//		// Chaîner la méthode orElse permet de renvoyer comme variable un Port et non un Optional<Port>
+//		model.addAttribute("port", ps.getPort(id).orElse(null));
+//		return "ports";
+//	}
+//	
 
 }

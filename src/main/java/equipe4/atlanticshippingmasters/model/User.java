@@ -39,12 +39,7 @@ public class User {
         String result = String.format(
                 "Category[id=%d, name='%s']%n",
                 idUser, username);
-        
         return result;
     }
-
-
-
-	
-    
+ 
 }

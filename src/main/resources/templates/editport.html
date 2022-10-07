@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+
+<head>
+<meta charset="utf-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link href="/css/main.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" th:href="@{/icofont.min.css}">
+
+</head>
+
+<body>
+	<header th:replace="fragments/asmtemplate.html :: header"></header>
+	<section layout:fragment="custom-content"
+		class="d-flex justify-content-center">
+		<div class="container">
+			<!-- start of navigation -->
+
+			<div class="container-fluid">
+			<div class="row p-3 m-2">
+				<div class=col-6-lg>
+					<div class="card align-centre">
+				
+				<form  th:object="${port}" th:action="${port.idPort}" th:method="POST">
+
+								<fieldset class="py-5 px-3 border border-primary">
+					<input type="hidden" th:field="*{idPort}" >
+					  <div class="mb-3">
+    					<label for="exampleInputEmail1" class="form-label">Port</label>
+    					<input type="text" class="form-control" id="name" aria-describedby="portName" th:field="*{name}" name="name" th:value="${port.name}" >
+					
+					<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger"></p>
+					<p th:if="${!#strings.isEmpty(message)}" th:text="${message}" class="alert alert-success"></p>
+					
+ 			 		</div>
+ 			 		<div class="mb-3">
+    					<label for="exampleInputEmail1" class="form-label" >Coordinates</label>
+    					<input type="text" class="form-control" id="coordinatesPort" aria-describedby="cordinates" th:field="*{coordinates}" th:name="coordinate" th:value="${port.coordinates}">
+						<p th:if="${#fields.hasErrors('coordinates')}" th:errors="*{coordinates}" class="alert alert-danger"></p>
+ 			 		</div>
+ 			 		<button type="submit" class="btn btn-info">Confirmer</button>
+ 			 		</fieldset>
+
+				</form>
+					
+					</div>
+					<a class="btn btn-info" th:href="@{/admin/adminDashboard}">Dashboards</a>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- end of navigation -->
+		
+	</section>
+
+	<footer th:replace="fragments/asmtemplate.html :: footer"></footer>
+</body>
+
+</html>

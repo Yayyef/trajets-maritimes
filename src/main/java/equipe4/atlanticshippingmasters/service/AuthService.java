@@ -18,12 +18,19 @@ public class AuthService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public void createNewUser(User user) {
+    public void createNewAdmin(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role role = Role.ADMIN;
         user.setRole(role);
         userRepository.save(user);
     }
+    public void createNewUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role role = Role.USER;
+        user.setRole(role);
+        userRepository.save(user);
+    }
+
 
 
 }

@@ -1,17 +1,13 @@
 package equipe4.atlanticshippingmasters.service;
-
-import java.util.List;
 import java.util.Optional;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import equipe4.atlanticshippingmasters.model.Port;
 import equipe4.atlanticshippingmasters.model.PortRepository;
 
 @Service
 public class PortService {
+	
 	
 	@Autowired
 	private PortRepository pr;
@@ -33,13 +29,11 @@ public class PortService {
 	public void insertPort(Port Port) {
 		pr.save(Port);
 	}
+	
+	}
 
 //	public Port get(int randomIndex) {
 //		// TODO Auto-generated method stub
 //		return (Port) randomGenerator.ints(randomIndex);
 //	}
 
-	
-
-	
-}

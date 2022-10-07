@@ -146,7 +146,9 @@ public class CalculatorController {
 		return portsFromParams;
 	}
 
+//this method takes the port from database by id and convert it to integer
 	private Port getRequestPort(int id) {
 		return ps.getPort(Integer.valueOf(id)).orElse(null);
 	}
+
 }
