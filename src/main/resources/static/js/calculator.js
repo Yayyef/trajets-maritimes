@@ -24,16 +24,10 @@ const stepModule = (() => {
 		return `<div>
 				
 				<label for="port${portListIterator}" class="form-label">Ajoutez une étape à votre itinéraire</label> 
-				<div  class="d-flex">
 				
-				<div>
-					<select id="port${portListIterator}" class="form-select" aria-label="Sélection de l'étape" name="port${portListIterator}">
+				<select id="port${portListIterator}" class="form-select" aria-label="Sélection de l'étape" name="port${portListIterator}">
 				${generateOptions()}
 				</select> 
-				</div>
-				
-				<button type="button" id="removeButton" class="btn btn-danger">Supprimer étape</button>
-				</div>
 				
 				</div>`;
 	}
