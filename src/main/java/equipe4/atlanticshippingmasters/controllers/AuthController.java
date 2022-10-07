@@ -2,6 +2,7 @@ package equipe4.atlanticshippingmasters.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,14 +31,35 @@ public class AuthController {
         return "login";
     }
 
+    	@GetMapping("/signup")
+        public String signup(Model model) {
 
+            model.addAttribute("userForm", new User());
+
+            return "signup";
+        }
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute("userForm") User userForm) {
 
         authService.createNewUser(userForm);
 
-        return "redirect:/";
+        return "redirect:/admin/adminDashboard";
     }
+    
+    @GetMapping("/admin/createNewAdmin")
+    public String createAdmin(Model model) {
+    	model.addAttribute("adminForm", new User());
+    	
+		return "createNewAdmin";
+    	
+    }
+    @PostMapping("/admin/createNewAdmin")
+    public String createAdminForm(@ModelAttribute ("adminForm") User adminForm) {
+    	authService.createNewAdmin(adminForm);
+		return "createNewAdmin";
+    }
+    
+    
 
 }

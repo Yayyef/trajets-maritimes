@@ -40,7 +40,7 @@ class WebSecurityConfig {
         .antMatchers("/admin/**").hasAuthority("ADMIN")
         .anyRequest().authenticated()
         .and()
-        .formLogin().loginPage("/login").defaultSuccessUrl("/adminDashboard").permitAll()
+        .formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll()
         .and()
         .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
 

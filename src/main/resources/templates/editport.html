@@ -29,12 +29,7 @@
 				<div class=col-6-lg>
 					<div class="card align-centre">
 				
-				<form action="#" th:object="${port}" th:action="'/port/'+${port.idPort}" th:method="POST">
-
-<!-- 								<div class="alert alert-danger" -->
-<!-- 									th:if="${#fields.hasErrors('*')}"> -->
-<!-- 									<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p> -->
-<!-- 								</div> -->
+				<form  th:object="${port}" th:action="${port.idPort}" th:method="POST">
 
 								<fieldset class="py-5 px-3 border border-primary">
 					<input type="hidden" th:field="*{idPort}" >
@@ -57,7 +52,7 @@
 				</form>
 					
 					</div>
-					<a class="btn btn-info" th:href="@{/adminDashboard}">Dashboards</a>
+					<a class="btn btn-info" th:href="@{/admin/adminDashboard}">Dashboards</a>
 					</div>
 				</div>
 				

@@ -25,11 +25,35 @@
 			<!-- start of navigation -->
 
 			<div class="container-fluid">
-				<a class="btn btn-info" href="#">Ajouter Port</a>
+
+				
+				
+		
+			<div class="container my-3">
+				<div class="row">
+				<div class="col-8">
+						<button class="btn btn-outline-info">
+							<i class="fa fa-plus-circle"> <strong>Ajouter Port</strong>
+							</i>
+						</button>
+						</div>
+						<div class="col-4">
+	
+						<button class="btn btn-outline-info">
+							<i class="fa fa-plus-circle"><strong><a th:href="@{/admin/createNewAdmin}">Create an account</a></strong>
+							</i>
+						</button>
+						</div>
+	
+				</div>
+			</div>
+				
+
+
 				<table class="table table-striped">
 					<thead>
 						<tr class="table-active">
-			
+
 						</tr>
 					</thead>
 					<tbody>
@@ -37,12 +61,9 @@
 							<td th:text="${port.idPort}">Id Port</td>
 							<td th:text="${port.name}">Port name</td>
 							<td th:text="${port.coordinates}">Coordinates</td>
-							
-							<td>
-								<a class="btn btn-info" th:href="'port/'+${port.idPort}">Modifier
-							</a>
 
-							</td>
+							<td><a class="btn btn-info" th:href="'port/'+${port.idPort}">Modifier
+							</a></td>
 
 						</tr>
 					</tbody>

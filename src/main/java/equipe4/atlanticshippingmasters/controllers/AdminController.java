@@ -1,5 +1,4 @@
 package equipe4.atlanticshippingmasters.controllers;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -16,28 +15,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import equipe4.atlanticshippingmasters.model.Port;
 import equipe4.atlanticshippingmasters.service.PortService;
 
-
 @Controller
 public class AdminController {
    
     @Autowired
     private PortService portService;
 
-    @GetMapping({"/adminDashboard"})
+    @GetMapping({"admin/adminDashboard"})
     public String admin(Model model, Authentication authentication) {
     	final Iterable<Port> ports=portService.getAllPorts();
     	model.addAttribute("portList",ports);
         return "adminDashboard";
     }
 
-    @GetMapping({"/port/{id}"})
+    @GetMapping({"/admin/port/{id}"})
     public String ajoutePort(@PathVariable Integer id,Model model) {
     	model.addAttribute("port",portService.getPort(id).orElse(null));
 		return "editport";
     	
     }
     
-    @PostMapping({"/port/{id}"})
+    @PostMapping({"/admin/port/{id}"})
     public String updatePort(@PathVariable Integer id,Model model,@Valid Port port,BindingResult result) {
     	//checking the values if the are correctly inserted or not
     	if(result.hasErrors()) {

@@ -37,6 +37,7 @@
 										<button class="btn btn-primary bg-primary" type="submit"
 											value="Sign Out">Déconnexion</button>
 									</form>
+									<div sec:authorize="hasAuthority('ADMIN')"> <a th:href="@{/admin/adminDashboard}">ADMIN</a></div>
 								</div>
 							</li>
 						</ul>
